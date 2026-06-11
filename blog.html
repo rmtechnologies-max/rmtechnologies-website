@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RM Technologies Blog - Tech insights on Data Engineering, Cloud Architecture, AI/ML, Web Development, and enterprise technology best practices.">
+  <title>Blog | RM Technologies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .blog-featured {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid rgba(0,212,255,0.3);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 60px;
+      transition: var(--transition);
+    }
+    .blog-featured:hover {
+      border-color: rgba(0,212,255,0.5);
+      box-shadow: var(--shadow-card);
+    }
+    .bf-thumb {
+      height: 100%;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      background: linear-gradient(135deg, #071525, #0D2137, rgba(0,212,255,0.1));
+      position: relative;
+    }
+    .bf-badge {
+      position: absolute;
+      top: 16px; left: 16px;
+      background: var(--gradient-main);
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-family: var(--font-mono);
+    }
+    .bf-content {
+      padding: 36px 36px 36px 0;
+    }
+    .bf-cat {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent-blue);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .bf-content h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+    .bf-content p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .bf-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      margin-bottom: 20px;
+    }
+    .bf-meta span { display: flex; align-items: center; gap: 5px; }
+    .bf-meta i { font-size: 0.7rem; color: var(--accent-blue); }
+
+    /* Blog Grid */
+    .blog-posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .bp-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      display: block;
+      color: inherit;
+    }
+    .bp-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,212,255,0.3);
+      box-shadow: var(--shadow-card);
+      color: inherit;
+    }
+    .bp-thumb {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      position: relative;
+    }
+    .bp-thumb-cat {
+      position: absolute;
+      top: 10px; left: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      color: white;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .bp-body { padding: 20px; }
+    .bp-date {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .bp-date span { display: flex; align-items: center; gap: 4px; }
+    .bp-date i { font-size: 0.65rem; color: var(--accent-blue); }
+    .bp-card h3 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .bp-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .bp-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .bp-author {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bp-author-avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: white;
+    }
+    .bp-author-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .bp-read {
+      font-size: 0.78rem;
+      color: var(--accent-blue);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: var(--transition);
+    }
+    .bp-read i { font-size: 0.7rem; }
+    .bp-card:hover .bp-read { gap: 8px; }
+
+    /* Categories Sidebar */
+    .blog-categories {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .blog-cat-btn {
+      padding: 8px 18px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-body);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .blog-cat-btn.active,
+    .blog-cat-btn:hover {
+      background: rgba(0,212,255,0.08);
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+    .blog-cat-btn i { font-size: 0.75rem; }
+
+    /* Newsletter */
+    .newsletter-box {
+      background: linear-gradient(135deg, rgba(0,212,255,0.07), rgba(0,102,255,0.04));
+      border: 1px solid rgba(0,212,255,0.25);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .newsletter-box h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .newsletter-box p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      margin-bottom: 24px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .newsletter-form input {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text-primary);
+      font-size: 0.88rem;
+      outline: none;
+      transition: var(--transition);
+      font-family: var(--font-body);
+    }
+    .newsletter-form input:focus {
+      border-color: var(--accent-blue);
+      background: rgba(0,212,255,0.04);
+    }
+    .newsletter-form input::placeholder { color: var(--text-muted); }
+
+    /* Tags Cloud */
+    .tags-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 32px;
+    }
+    .tag-cloud-item {
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .tag-cloud-item:hover {
+      background: rgba(0,212,255,0.08);
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    @media(max-width: 1024px) {
+      .blog-featured { grid-template-columns: 1fr; }
+      .bf-thumb { min-height: 220px; }
+      .bf-content { padding: 28px; }
+      .blog-posts-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media(max-width: 768px) {
+      .blog-posts-grid { grid-template-columns: 1fr; }
+      .newsletter-form { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-content">
+    <div class="loader-logo">RMT</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    <div class="loader-text">LOADING...</div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-box">RMT</div>
+      <span class="nav-logo-text">RM <span>Technologies</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="team.html">Team</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html" class="nav-cta">Contact Us</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="team.html">Team</a>
+  <a href="blog.html">Blog</a>
+  <a href="careers.html">Careers</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-glow"></div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span class="current">Blog</span>
+    </div>
+    <span class="section-tag">Tech Insights & Updates</span>
+    <h1 class="section-title" style="font-size:clamp(2rem,4vw,3.2rem);margin-bottom:16px;">
+      The RMT <span class="gradient-text">Engineering Blog</span>
+    </h1>
+    <div class="divider"></div>
+    <p class="section-sub" style="margin:0 auto;font-size:1.05rem;">
+      Deep dives into data engineering, cloud architecture, AI/ML, and enterprise technology — straight from the engineers building it.
+    </p>
+  </div>
+</section>
+
+<!-- FEATURED POST -->
+<section class="section">
+  <div class="container">
+
+    <div class="blog-featured" data-aos="fade-up">
+      <div class="bf-thumb">
+        <div class="bf-badge">⭐ FEATURED</div>
+        🏗️
+      </div>
+      <div class="bf-content">
+        <div class="bf-cat">Data Engineering</div>
+        <h2>Building Medallion Architecture on AWS Databricks: A Complete Guide</h2>
+        <p>How we designed and deployed an end-to-end Bronze → Silver → Gold data platform processing 1-2 million orders daily for a ₹20Cr+ FMCG enterprise. Architecture decisions, PySpark optimizations, and lessons learned.</p>
+        <div class="bf-meta">
+          <span><i class="fa-solid fa-calendar"></i> Jan 15, 2025</span>
+          <span><i class="fa-solid fa-clock"></i> 12 min read</span>
+          <span><i class="fa-solid fa-user"></i> Engineering Team</span>
+        </div>
+        <div class="service-tags" style="gap:6px;margin-bottom:20px;">
+          <span class="tag">Databricks</span>
+          <span class="tag">PySpark</span>
+          <span class="tag">Delta Lake</span>
+          <span class="tag">Airflow</span>
+        </div>
+        <a href="#" class="btn-primary" style="font-size:0.85rem;padding:10px 20px;">
+          <i class="fa-solid fa-book-open"></i> Read Full Article
+        </a>
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="blog-categories" data-aos="fade-up">
+      <button class="blog-cat-btn active"><i class="fa-solid fa-grid-2"></i> All Posts</button>
+      <button class="blog-cat-btn"><i class="fa-solid fa-database"></i> Data Engineering</button>
+      <button class="blog-cat-btn"><i class="fa-solid fa-cloud"></i> Cloud & DevOps</button>
+      <button class="blog-cat-btn"><i class="fa-solid fa-brain"></i> AI & ML</button>
+      <button class="blog-cat-btn"><i class="fa-solid fa-code"></i> Web Development</button>
+      <button class="blog-cat-btn"><i class="fa-solid fa-building"></i> Company</button>
+    </div>
+
+    <!-- BLOG POSTS GRID -->
+    <div class="blog-posts-grid">
+
+      <!-- Post 1 -->
+      <a href="#" class="bp-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="bp-thumb bt-1">
+          <div class="bp-thumb-cat">DATA ENGINEERING</div>
+          📊
+        </div>
+        <div class="bp-body">
+          <div class="bp-date">
+            <span><i class="fa-solid fa-calendar"></i> Feb 8, 2025</span>
+            <span><i class="fa-solid fa-clock"></i> 8 min</span>
+          </div>
+          <h3>How We Process 1 Million Orders Daily with Apache Kafka</h3>
+          <p>Deep dive into our Kafka-based real-time ingestion pipeline — partitioning strategy, consumer groups, exactly-once semantics, and monitoring setup.</p>
+          <div class="bp-footer">
+            <div class="bp-author">
+              <div class="bp-author-avatar" style="background:linear-gradient(135deg,#00D4FF,#0066FF);">AK</div>
+              <span class="bp-author-name">Amit Kumar</span>
+            </div>
+            <span class="bp-read">Read More <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 2 -->
+      <a href="#" class="bp-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="bp-thumb bt-2">
+          <div class="bp-thumb-cat">AI & ML</div>
+          🤖
+        </div>
+        <div class="bp-body">
+          <div class="bp-date">
+            <span><i class="fa-solid fa-calendar"></i> Jan 28, 2025</span>
+            <span><i class="fa-solid fa-clock"></i> 10 min</span>
+          </div>
+          <h3>Building a RAG-Based AI Assistant with LangChain & Pinecone</h3>
+          <p>How we built an AI-powered support assistant that handles 80% of customer queries automatically using Retrieval Augmented Generation.</p>
+          <div class="bp-footer">
+            <div class="bp-author">
+              <div class="bp-author-avatar" style="background:linear-gradient(135deg,#7C3AED,#4F46E5);">AP</div>
+              <span class="bp-author-name">Arjun Pandey</span>
+            </div>
+            <span class="bp-read">Read More <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 3 -->
+      <a href="#" class="bp-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="bp-thumb bt-3">
+          <div class="bp-thumb-cat">CLOUD</div>
+          ☁️
+        </div>
+        <div class="bp-body">
+          <div class="bp-date">
+            <span><i class="fa-solid fa-calendar"></i> Jan 20, 2025</span>
+            <span><i class="fa-solid fa-clock"></i> 7 min</span>
+          </div>
+          <h3>Terraform Best Practices: Managing 50+ AWS Resources at Scale</h3>
+          <p>Our approach to Infrastructure as Code — module structure, state management, workspaces, and CI/CD integration with GitHub Actions.</p>
+          <div class="bp-footer">
+            <div class="bp-author">
+              <div class="bp-author-avatar" style="background:linear-gradient(135deg,#FF6B35,#FF4500);">MJ</div>
+              <span class="bp-author-name">Manish Jha</span>
+            </div>
+            <span class="bp-read">Read More <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 4 -->
+      <a href="#" class="bp-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="bp-thumb bt-4">
+          <div class="bp-thumb-cat">DATA ENGINEERING</div>
+          ❄️
+        </div>
+        <div class="bp-body">
+          <div class="bp-date">
+            <span><i class="fa-solid fa-calendar"></i> Jan 12, 2025</span>
+            <span><i class="fa-solid fa-clock"></i> 9 min</span>
+          </div>
+          <h3>Snowflake vs Databricks: Choosing the Right Data Platform in 2025</h3>
+          <p>An honest comparison from a team that uses both daily — pricing, performance, ecosystem, use cases, and when to choose which.</p>
+          <div class="bp-footer">
+            <div class="bp-author">
+              <div class="bp-author-avatar" style="background:linear-gradient(135deg,#0088CC,#005599);">PS</div>
+              <span class="bp-author-name">Priya Singh</span>
+            </div>
+            <span class="bp-read">Read More <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 5 -->
+      <a href="#" class="bp-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="bp-thumb bt-5">
+          <div class="bp-thumb-cat">COMPANY</div>
+          🚀
+        </div>
+        <div class="bp-body">
+          <div class="bp-date">
+            <span><i class="fa-solid fa-calendar"></i> Dec 28, 2024</span>
+            <span><i class="fa-solid fa-clock"></i> 6 min</span>
+          </div>
+          <h3>From FMCG to Tech: How RM Technologies Was Born</h3>
+          <p>The story of how a masala company's internal tech team evolved into a full-scale enterprise technology company — challenges, decisions, and the road ahead.</p>
+          <div class="bp-footer">
+            <div class="bp-author">
+              <div class="bp-author-avatar" style="background:linear-gradient(135deg,#00D4FF,#0066FF);">VP</div>
+              <span class="bp-author-name">Vikash Patel</span>
+            </div>
+            <span class="bp-read">Read More <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 6 -->
+      <a href="#" class="bp-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="bp-thumb bt-6">
+          <div class="bp-thumb-cat">WEB DEV</div>
+          ⚛️
+        </div>
+        <div class="bp-body">
+          <div class="bp-date">
+            <span><i class="fa-solid fa-calendar"></i> Dec 15, 2024</span>
+            <span><i class="fa-solid fa-clock"></i> 8 min</span>
+          </div>
+          <h3>Building a Vendor Portal for 5000+ Users with React & Node.js</h3>
+          <p>Architecture decisions, performance optimizations, role-based access, and real-time features behind our vendor management web application.</p>
+          <div class="bp-footer">
+            <div class="bp-author">
+              <div class="bp-author-avatar" style="background:linear-gradient(135deg,#28C864,#00A854);">NK</div>
+              <span class="bp-author-name">Neha Kapoor</span>
+            </div>
+            <span class="bp-read">Read More <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 7 -->
+      <a href="#" class="bp-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="bp-thumb bt-1">
+          <div class="bp-thumb-cat">DATA ENGINEERING</div>
+          🔧
+        </div>
+        <div class="bp-body">
+          <div class="bp-date">
+            <span><i class="fa-solid fa-calendar"></i> Dec 5, 2024</span>
+            <span><i class="fa-solid fa-clock"></i> 11 min</span>
+          </div>
+          <h3>PySpark Optimization: 10 Tricks That Saved Us 60% Processing Time</h3>
+          <p>Practical PySpark performance tips from production — partitioning, caching, broadcast joins, predicate pushdown, and more.</p>
+          <div class="bp-footer">
+            <div class="bp-author">
+              <div class="bp-author-avatar" style="background:linear-gradient(135deg,#00AADD,#0088BB);">RV</div>
+              <span class="bp-author-name">Rohit Verma</span>
+            </div>
+            <span class="bp-read">Read More <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 8 -->
+      <a href="#" class="bp-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="bp-thumb bt-2">
+          <div class="bp-thumb-cat">AI & ML</div>
+          📈
+        </div>
+        <div class="bp-body">
+          <div class="bp-date">
+            <span><i class="fa-solid fa-calendar"></i> Nov 22, 2024</span>
+            <span><i class="fa-solid fa-clock"></i> 9 min</span>
+          </div>
+          <h3>Demand Forecasting for FMCG: ML Models That Actually Work</h3>
+          <p>How we built a demand prediction system achieving 87% accuracy for 5000+ vendors — feature engineering, model selection, and deployment with MLflow.</p>
+          <div class="bp-footer">
+            <div class="bp-author">
+              <div class="bp-author-avatar" style="background:linear-gradient(135deg,#7C3AED,#5B21B6);">KR</div>
+              <span class="bp-author-name">Kavya Rao</span>
+            </div>
+            <span class="bp-read">Read More <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Post 9 -->
+      <a href="#" class="bp-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="bp-thumb bt-5">
+          <div class="bp-thumb-cat">COMPANY</div>
+          🏅
+        </div>
+        <div class="bp-body">
+          <div class="bp-date">
+            <span><i class="fa-solid fa-calendar"></i> Nov 10, 2024</span>
+            <span><i class="fa-solid fa-clock"></i> 5 min</span>
+          </div>
+          <h3>Hiring Data Engineers in India: What We Look For</h3>
+          <p>Our hiring philosophy, interview process, and the qualities that make a great data engineer — skills over degrees, builders over talkers.</p>
+          <div class="bp-footer">
+            <div class="bp-author">
+              <div class="bp-author-avatar" style="background:linear-gradient(135deg,#E8A810,#C89008);">PP</div>
+              <span class="bp-author-name">Pooja Patel</span>
+            </div>
+            <span class="bp-read">Read More <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Load More -->
+    <div style="text-align:center;margin-top:48px;" data-aos="fade-up">
+      <button class="btn-secondary" style="cursor:pointer;">
+        <i class="fa-solid fa-rotate"></i> Load More Articles
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- TAGS CLOUD -->
+<section class="section-sm">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-tag">Popular Topics</span>
+      <h2 class="section-title" style="font-size:1.6rem;">Browse by <span class="gradient-text">Tags</span></h2>
+    </div>
+    <div class="tags-cloud" style="justify-content:center;max-width:800px;margin:24px auto 0;" data-aos="fade-up">
+      <span class="tag-cloud-item">AWS Databricks</span>
+      <span class="tag-cloud-item">Apache Kafka</span>
+      <span class="tag-cloud-item">PySpark</span>
+      <span class="tag-cloud-item">Snowflake</span>
+      <span class="tag-cloud-item">dbt</span>
+      <span class="tag-cloud-item">Apache Airflow</span>
+      <span class="tag-cloud-item">Delta Lake</span>
+      <span class="tag-cloud-item">React.js</span>
+      <span class="tag-cloud-item">Node.js</span>
+      <span class="tag-cloud-item">Python</span>
+      <span class="tag-cloud-item">Machine Learning</span>
+      <span class="tag-cloud-item">LangChain</span>
+      <span class="tag-cloud-item">Terraform</span>
+      <span class="tag-cloud-item">Docker</span>
+      <span class="tag-cloud-item">Kubernetes</span>
+      <span class="tag-cloud-item">CI/CD</span>
+      <span class="tag-cloud-item">Data Quality</span>
+      <span class="tag-cloud-item">ETL Pipelines</span>
+      <span class="tag-cloud-item">FMCG Tech</span>
+      <span class="tag-cloud-item">Medallion Architecture</span>
+      <span class="tag-cloud-item">Power BI</span>
+      <span class="tag-cloud-item">Career Tips</span>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- NEWSLETTER -->
+<section class="section">
+  <div class="container">
+    <div class="newsletter-box" data-aos="fade-up">
+      <div style="font-size:2.5rem;margin-bottom:16px;">📬</div>
+      <h3>Subscribe to Our <span class="gradient-text">Newsletter</span></h3>
+      <p>Get weekly tech insights, engineering deep-dives, and company updates delivered straight to your inbox. No spam. Unsubscribe anytime.</p>
+      <form class="newsletter-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="email" name="newsletter_email" placeholder="your@email.com" required>
+        <button type="submit" class="btn-primary" style="white-space:nowrap;">
+          <i class="fa-solid fa-paper-plane"></i> Subscribe
+        </button>
+      </form>
+      <p style="font-size:0.75rem;color:var(--text-muted);margin-top:12px;">Join 500+ tech professionals who read our newsletter</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <div class="footer-logo-box">RMT</div>
+          <span class="footer-logo-name">RM Technologies</span>
+        </div>
+        <p>Full-stack enterprise technology — Data, Cloud, AI, Web & Consulting. Tech subsidiary of Rajesh Masala Udyog Pvt Ltd.</p>
+        <div class="social-links">
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html#data"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Data & Analytics</a></li>
+          <li><a href="services.html#cloud"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Cloud & DevOps</a></li>
+          <li><a href="services.html#web"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Web & Mobile</a></li>
+          <li><a href="services.html#ai"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> AI & Automation</a></li>
+          <li><a href="services.html#enterprise"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Enterprise</a></li>
+          <li><a href="services.html#consulting"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Consulting</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="about.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> About Us</a></li>
+          <li><a href="portfolio.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Portfolio</a></li>
+          <li><a href="team.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Our Team</a></li>
+          <li><a href="blog.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Blog</a></li>
+          <li><a href="careers.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Careers</a></li>
+          <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact Us</h5>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-envelope"></i>
+          <span><a href="mailto:info@rmtechnologies.in" style="color:var(--text-secondary);">info@rmtechnologies.in</a></span>
+        </div>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 7570000370</span>
+        </div>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Amethi, Uttar Pradesh, India – 227405</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <p>© 2025 RM Technologies. All Rights Reserved.</p>
+        <span class="footer-cin">Parent CIN: U15490UP2020PTC127010 | Rajesh Masala Udyog Pvt Ltd</span>
+      </div>
+      <div class="footer-bottom-right">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="refund.html">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-float" target="_blank">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<button class="back-top" id="backTop">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
