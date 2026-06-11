@@ -447,3 +447,76 @@ console.log('%c RM Technologies ',
 console.log('%c Enterprise Tech Solutions | rmtechnologies.in ', 
   'color: #00D4FF; font-size: 11px;'
 );
+// Blog Post Click Handler - Coming Soon
+document.querySelectorAll('.bp-card, .blog-card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // Create popup
+    const popup = document.createElement('div');
+    popup.style.cssText = `
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,22,40,0.9); backdrop-filter: blur(10px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999; animation: fadeIn 0.3s ease;
+    `;
+    
+    popup.innerHTML = `
+      <div style="
+        background: #0D2137; border: 1px solid rgba(0,212,255,0.3);
+        border-radius: 16px; padding: 40px; text-align: center;
+        max-width: 420px; width: 90%; position: relative;
+      ">
+        <div style="font-size: 3rem; margin-bottom: 16px;">📝</div>
+        <h3 style="font-family: 'Poppins',sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 10px;">
+          Article Coming Soon!
+        </h3>
+        <p style="color: #94A3B8; font-size: 0.9rem; line-height: 1.7; margin-bottom: 24px;">
+          Our engineering team is writing this article. Subscribe to our newsletter to get notified when it's published.
+        </p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <a href="contact.html" style="
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, #00D4FF, #0066FF);
+            color: white; padding: 10px 20px; border-radius: 8px;
+            font-weight: 600; font-size: 0.85rem; text-decoration: none;
+          ">
+            <i class="fa-solid fa-envelope"></i> Contact Us
+          </a>
+          <button onclick="this.closest('div').closest('div').remove()" style="
+            display: inline-flex; align-items: center; gap: 8px;
+            background: transparent; color: #94A3B8; padding: 10px 20px;
+            border-radius: 8px; font-weight: 600; font-size: 0.85rem;
+            border: 1px solid rgba(255,255,255,0.2); cursor: pointer;
+          ">
+            <i class="fa-solid fa-xmark"></i> Close
+          </button>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(popup);
+    
+    // Close on background click
+    popup.addEventListener('click', function(ev) {
+      if (ev.target === popup) popup.remove();
+    });
+    
+    // Close on Escape
+    document.addEventListener('keydown', function handler(ev) {
+      if (ev.key === 'Escape') {
+        popup.remove();
+        document.removeEventListener('keydown', handler);
+      }
+    });
+  });
+});
+
+// Featured blog read button
+document.querySelectorAll('.bf-content .btn-primary, .blog-featured .btn-primary').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    // Trigger same popup
+    document.querySelector('.bp-card')?.click();
+  });
+});
