@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RM Technologies - Enterprise Data Engineering, Cloud Solutions, Web Development & AI/ML services. Tech subsidiary of Rajesh Masala Udyog Pvt Ltd.">
+  <meta name="keywords" content="RM Technologies, Data Engineering, AWS Databricks, Cloud Solutions, Web Development, AI ML, ETL Pipelines, Amethi UP">
+  <meta property="og:title" content="RM Technologies | Enterprise Tech Solutions">
+  <meta property="og:description" content="From Data to Decisions. Powering Enterprise Technology.">
+  <meta property="og:url" content="https://rmtechnologies.in">
+  <meta property="og:type" content="website">
+  <title>RM Technologies | Enterprise Tech Solutions</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     LOADER
+═══════════════════════════════════ -->
+<div id="loader">
+  <div class="loader-content">
+    <div class="loader-logo">RMT</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    <div class="loader-text">INITIALIZING...</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     NAVBAR
+═══════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-box">RMT</div>
+      <span class="nav-logo-text">RM <span>Technologies</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="team.html">Team</a>
+      <a href="blog.html">Blog</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html" class="nav-cta">Contact Us</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="team.html">Team</a>
+  <a href="blog.html">Blog</a>
+  <a href="careers.html">Careers</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<!-- ═══════════════════════════════════
+     HERO
+═══════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-container">
+    <!-- Left Content -->
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        Enterprise Tech Solutions · Amethi, UP
+      </div>
+
+      <h1 class="hero-title">
+        From <span class="gradient-text">Data</span> to Decisions.<br>
+        Powering <span class="orange-text">Enterprise</span> Tech.
+      </h1>
+
+      <p class="hero-subtitle">
+        RM Technologies — the tech powerhouse behind a ₹10–20 Crore FMCG empire. 
+        We build scalable data pipelines, cloud platforms, and intelligent systems 
+        for enterprises across India and beyond.
+      </p>
+
+      <div class="hero-mini-stats">
+        <div class="mini-stat">
+          <div class="mini-stat-num">5000+</div>
+          <div class="mini-stat-label">Vendors Managed</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-num">1–2M</div>
+          <div class="mini-stat-label">Daily Transactions</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-num">₹20Cr+</div>
+          <div class="mini-stat-label">Revenue Supported</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-num">99.9%</div>
+          <div class="mini-stat-label">Uptime</div>
+        </div>
+      </div>
+
+      <div class="hero-buttons">
+        <a href="services.html" class="btn-primary">
+          <i class="fa-solid fa-rocket"></i> Explore Solutions
+        </a>
+        <a href="contact.html" class="btn-secondary">
+          <i class="fa-solid fa-envelope"></i> Get in Touch
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Visual -->
+    <div class="hero-visual">
+      <div class="code-window">
+        <div class="code-window-header">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <span class="window-title">medallion_pipeline.py</span>
+        </div>
+        <div class="code-body">
+          <div><span class="ln">01</span><span class="cm"># RM Technologies - Data Platform</span></div>
+          <div><span class="ln">02</span><span class="kw">from</span> pyspark.sql <span class="kw">import</span> SparkSession</div>
+          <div><span class="ln">03</span><span class="kw">from</span> delta.tables <span class="kw">import</span> DeltaTable</div>
+          <div><span class="ln">04</span>&nbsp;</div>
+          <div><span class="ln">05</span><span class="fn">def</span> <span class="nm">process_bronze_layer</span>(df):</div>
+          <div><span class="ln">06</span>&nbsp;&nbsp;<span class="cm"># 1-2M orders/day · 5000+ vendors</span></div>
+          <div><span class="ln">07</span>&nbsp;&nbsp;df = df.<span class="fn">dropDuplicates</span>()</div>
+          <div><span class="ln">08</span>&nbsp;&nbsp;df = df.<span class="fn">filter</span>(df.status != <span class="st">"null"</span>)</div>
+          <div><span class="ln">09</span>&nbsp;&nbsp;<span class="kw">return</span> df.<span class="fn">write</span>().format(<span class="st">"delta"</span>)</div>
+          <div><span class="ln">10</span>&nbsp;</div>
+          <div><span class="ln">11</span><span class="cm"># Gold Layer → Analytics Ready ✓</span></div>
+          <div><span class="ln">12</span>pipeline.<span class="fn">run</span>(vendors=<span class="nm">5000</span>, mode=<span class="st">"streaming"</span>)</div>
+        </div>
+      </div>
+
+      <div class="floating-badge top-right">
+        <div class="badge-icon blue"><i class="fa-brands fa-aws"></i></div>
+        <div class="badge-info">
+          <strong>AWS Databricks</strong>
+          <small>Active · Medallion Arch</small>
+        </div>
+      </div>
+
+      <div class="floating-badge bottom-left">
+        <div class="badge-icon green"><i class="fa-solid fa-check"></i></div>
+        <div class="badge-info">
+          <strong>Pipeline Healthy</strong>
+          <small>1.2M orders processed</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     TECH STACK MARQUEE
+═══════════════════════════════════ -->
+<div class="marquee-section">
+  <div class="marquee-label">Our Technology Stack</div>
+  <div class="marquee-track-wrapper">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="marquee-item"><i class="fa-brands fa-aws"></i> AWS</div>
+      <div class="marquee-item"><i class="fa-solid fa-database"></i> Databricks</div>
+      <div class="marquee-item"><i class="fa-brands fa-python"></i> PySpark</div>
+      <div class="marquee-item"><i class="fa-solid fa-stream"></i> Apache Kafka</div>
+      <div class="marquee-item"><i class="fa-solid fa-wind"></i> Apache Airflow</div>
+      <div class="marquee-item"><i class="fa-solid fa-triangle-exclamation"></i> Delta Lake</div>
+      <div class="marquee-item"><i class="fa-brands fa-react"></i> React.js</div>
+      <div class="marquee-item"><i class="fa-brands fa-node-js"></i> Node.js</div>
+      <div class="marquee-item"><i class="fa-brands fa-python"></i> Python</div>
+      <div class="marquee-item"><i class="fa-solid fa-cube"></i> Docker</div>
+      <div class="marquee-item"><i class="fa-solid fa-dharmachakra"></i> Kubernetes</div>
+      <div class="marquee-item"><i class="fa-solid fa-brain"></i> TensorFlow</div>
+      <div class="marquee-item"><i class="fa-solid fa-cloud"></i> Azure</div>
+      <div class="marquee-item"><i class="fa-solid fa-code-branch"></i> Terraform</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="marquee-item"><i class="fa-brands fa-aws"></i> AWS</div>
+      <div class="marquee-item"><i class="fa-solid fa-database"></i> Databricks</div>
+      <div class="marquee-item"><i class="fa-brands fa-python"></i> PySpark</div>
+      <div class="marquee-item"><i class="fa-solid fa-stream"></i> Apache Kafka</div>
+      <div class="marquee-item"><i class="fa-solid fa-wind"></i> Apache Airflow</div>
+      <div class="marquee-item"><i class="fa-solid fa-triangle-exclamation"></i> Delta Lake</div>
+      <div class="marquee-item"><i class="fa-brands fa-react"></i> React.js</div>
+      <div class="marquee-item"><i class="fa-brands fa-node-js"></i> Node.js</div>
+      <div class="marquee-item"><i class="fa-brands fa-python"></i> Python</div>
+      <div class="marquee-item"><i class="fa-solid fa-cube"></i> Docker</div>
+      <div class="marquee-item"><i class="fa-solid fa-dharmachakra"></i> Kubernetes</div>
+      <div class="marquee-item"><i class="fa-solid fa-brain"></i> TensorFlow</div>
+      <div class="marquee-item"><i class="fa-solid fa-cloud"></i> Azure</div>
+      <div class="marquee-item"><i class="fa-solid fa-code-branch"></i> Terraform</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     ABOUT SNIPPET
+═══════════════════════════════════ -->
+<section class="section" id="about">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+      <div data-aos="fade-right">
+        <span class="section-tag">About Us</span>
+        <h2 class="section-title">Born in FMCG.<br>Built for <span class="gradient-text">Enterprise Tech.</span></h2>
+        <div class="divider-left"></div>
+        <p style="color:var(--text-secondary);font-size:0.95rem;line-height:1.8;margin-bottom:16px;">
+          RM Technologies started as the internal tech division of 
+          <strong style="color:var(--text-primary);">Rajesh Masala Udyog Private Limited</strong> — 
+          a leading FMCG company manufacturing masala and food products in Amethi, Uttar Pradesh.
+        </p>
+        <p style="color:var(--text-secondary);font-size:0.95rem;line-height:1.8;margin-bottom:24px;">
+          What began as managing 5000+ vendor relationships and processing 1–2 million daily 
+          order transactions evolved into a full-scale enterprise technology company. Today, 
+          we bring that same battle-tested expertise to external clients across industries.
+        </p>
+        <div class="highlight-box">
+          💡 "We don't just process data. We power businesses that move India forward."
+        </div>
+        <br>
+        <a href="about.html" class="btn-primary">
+          <i class="fa-solid fa-arrow-right"></i> Our Full Story
+        </a>
+      </div>
+
+      <div data-aos="fade-left">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;">
+            <div style="font-size:2rem;margin-bottom:8px;">🏭</div>
+            <div style="font-family:var(--font-heading);font-weight:700;font-size:0.9rem;margin-bottom:4px;">Parent Company</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">Rajesh Masala Udyog Pvt Ltd</div>
+          </div>
+          <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;">
+            <div style="font-size:2rem;margin-bottom:8px;">📍</div>
+            <div style="font-family:var(--font-heading);font-weight:700;font-size:0.9rem;margin-bottom:4px;">Based In</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">Amethi, Uttar Pradesh, India</div>
+          </div>
+          <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;">
+            <div style="font-size:2rem;margin-bottom:8px;">🚀</div>
+            <div style="font-family:var(--font-heading);font-weight:700;font-size:0.9rem;margin-bottom:4px;">Tech Focus</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">Data · Cloud · AI · Web</div>
+          </div>
+          <div style="background:var(--card-bg);border:1px solid rgba(0,212,255,0.3);border-radius:var(--radius);padding:24px;text-align:center;background:rgba(0,212,255,0.05);">
+            <div style="font-size:2rem;margin-bottom:8px;">⚡</div>
+            <div style="font-family:var(--font-heading);font-weight:700;font-size:0.9rem;margin-bottom:4px;">Now Open</div>
+            <div style="font-size:0.78rem;color:var(--accent-blue);">Taking External Projects</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════════════════════════════
+     SERVICES
+═══════════════════════════════════ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-tag">What We Do</span>
+      <h2 class="section-title">Enterprise <span class="gradient-text">Services</span></h2>
+      <div class="divider"></div>
+      <p class="section-sub">From data pipelines processing millions of transactions to intelligent web platforms — we build tech that scales.</p>
+    </div>
+
+    <div class="services-grid">
+      <a href="services.html#data-engineering" class="service-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-icon"><i class="fa-solid fa-database"></i></div>
+        <h3>Data Engineering & Analytics</h3>
+        <p>Medallion Architecture, real-time ETL pipelines, vendor analytics, and scalable data platforms on AWS Databricks.</p>
+        <div class="service-tags">
+          <span class="tag">AWS</span>
+          <span class="tag">Databricks</span>
+          <span class="tag">PySpark</span>
+          <span class="tag">Kafka</span>
+          <span class="tag">Airflow</span>
+        </div>
+      </a>
+
+      <a href="services.html#web-dev" class="service-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="service-icon"><i class="fa-solid fa-globe"></i></div>
+        <h3>Web & Mobile Development</h3>
+        <p>Enterprise web apps, vendor portals, mobile apps, and e-commerce platforms built with modern tech stacks.</p>
+        <div class="service-tags">
+          <span class="tag tag-orange">React</span>
+          <span class="tag tag-orange">Node.js</span>
+          <span class="tag tag-orange">React Native</span>
+          <span class="tag tag-orange">AWS</span>
+        </div>
+      </a>
+
+      <a href="services.html#ai-ml" class="service-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-icon"><i class="fa-solid fa-brain"></i></div>
+        <h3>AI & Machine Learning</h3>
+        <p>Predictive analytics, NLP solutions, AI-powered assistants, and recommendation engines for enterprise decisions.</p>
+        <div class="service-tags">
+          <span class="tag tag-purple">Python</span>
+          <span class="tag tag-purple">TensorFlow</span>
+          <span class="tag tag-purple">SageMaker</span>
+        </div>
+      </a>
+
+      <a href="services.html#cloud" class="service-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-icon"><i class="fa-solid fa-cloud"></i></div>
+        <h3>Cloud & DevOps</h3>
+        <p>AWS/Azure cloud setup, CI/CD pipelines, Infrastructure as Code, containerization and monitoring solutions.</p>
+        <div class="service-tags">
+          <span class="tag">AWS</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">Terraform</span>
+        </div>
+      </a>
+
+      <a href="services.html#consulting" class="service-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="service-icon"><i class="fa-solid fa-handshake"></i></div>
+        <h3>IT Consulting & Staffing</h3>
+        <p>Tech team augmentation, project-based engagements, and architecture consulting — TCS/Wipro model, startup speed.</p>
+        <div class="service-tags">
+          <span class="tag tag-orange">Consulting</span>
+          <span class="tag tag-orange">Staffing</span>
+          <span class="tag tag-orange">Architecture</span>
+        </div>
+      </a>
+
+      <a href="services.html#security" class="service-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Cybersecurity</h3>
+        <p>Security audits, data protection frameworks, compliance consulting for SOC2 and GDPR standards.</p>
+        <div class="service-tags">
+          <span class="tag tag-purple">SOC2</span>
+          <span class="tag tag-purple">GDPR</span>
+          <span class="tag tag-purple">Audits</span>
+        </div>
+      </a>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;" data-aos="fade-up">
+      <a href="services.html" class="btn-secondary">
+        <i class="fa-solid fa-arrow-right"></i> View All Services
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════════════════════════════
+     STATS
+═══════════════════════════════════ -->
+<section class="stats-section section-sm">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="stat-icon"><i class="fa-solid fa-store"></i></div>
+        <div class="stat-num" data-count="5000">0</div>
+        <div class="stat-label">Vendors Managed</div>
+        <div class="stat-sub">Active vendor network</div>
+      </div>
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <div class="stat-num" data-count="2">0</div>
+        <div class="stat-label">Million Orders/Day</div>
+        <div class="stat-sub">Real-time processing</div>
+      </div>
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="stat-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+        <div class="stat-num" data-prefix="₹" data-suffix="Cr+">20</div>
+        <div class="stat-label">Revenue Supported</div>
+        <div class="stat-sub">Annual transactions</div>
+      </div>
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-icon"><i class="fa-solid fa-folder-open"></i></div>
+        <div class="stat-num" data-count="50">0</div>
+        <div class="stat-label">Projects Delivered</div>
+        <div class="stat-sub">Internal + external</div>
+      </div>
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="250">
+        <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="stat-num" data-count="15">0</div>
+        <div class="stat-label">Tech Experts</div>
+        <div class="stat-sub">And growing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════════════════════════════
+     FEATURED PROJECTS
+═══════════════════════════════════ -->
+<section class="section" id="portfolio">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-tag">Our Work</span>
+      <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+      <div class="divider"></div>
+      <p class="section-sub">Real projects. Real scale. Real results — from millions of daily transactions to intelligent enterprise platforms.</p>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <a href="project-detail.html" class="project-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="project-thumb pt-1">
+          <div class="project-thumb-icon">🏗️</div>
+          <div class="featured-badge">⭐ FEATURED</div>
+        </div>
+        <div class="project-content">
+          <div class="project-client">Rajesh Masala Udyog Pvt Ltd</div>
+          <h3>Enterprise Vendor Data Platform</h3>
+          <p>End-to-end Medallion Architecture on AWS Databricks managing 5000+ vendors, 1–2M daily orders with real-time analytics.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-val">5000+</div>
+              <div class="metric-key">Vendors</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">1-2M</div>
+              <div class="metric-key">Orders/Day</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">99.9%</div>
+              <div class="metric-key">Uptime</div>
+            </div>
+          </div>
+          <div class="service-tags">
+            <span class="tag">Databricks</span>
+            <span class="tag">Kafka</span>
+            <span class="tag">PySpark</span>
+            <span class="tag">Airflow</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 2 -->
+      <a href="portfolio.html" class="project-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="project-thumb pt-2">
+          <div class="project-thumb-icon">🤖</div>
+        </div>
+        <div class="project-content">
+          <div class="project-client">Internal · AI Division</div>
+          <h3>AI-Powered Order Prediction System</h3>
+          <p>ML model predicting order volumes for 5000+ vendors with 85% accuracy, saving ₹2Cr in operational costs.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-val">85%</div>
+              <div class="metric-key">Accuracy</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">₹2Cr</div>
+              <div class="metric-key">Saved</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">Real-time</div>
+              <div class="metric-key">Inference</div>
+            </div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-purple">Python</span>
+            <span class="tag tag-purple">SageMaker</span>
+            <span class="tag tag-purple">ML</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 3 -->
+      <a href="portfolio.html" class="project-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="project-thumb pt-3">
+          <div class="project-thumb-icon">📱</div>
+        </div>
+        <div class="project-content">
+          <div class="project-client">Internal · Mobile Division</div>
+          <h3>Vendor Mobile App & Portal</h3>
+          <p>Mobile app for 5000+ vendors to place orders, track deliveries, view payments and manage accounts.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-val">5000+</div>
+              <div class="metric-key">Users</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">4.8★</div>
+              <div class="metric-key">Rating</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val">2</div>
+              <div class="metric-key">Platforms</div>
+            </div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-orange">React Native</span>
+            <span class="tag tag-orange">Node.js</span>
+            <span class="tag tag-orange">MongoDB</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;" data-aos="fade-up">
+      <a href="portfolio.html" class="btn-secondary">
+        <i class="fa-solid fa-briefcase"></i> View All Projects
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════════════════════════════
+     WHY CHOOSE US
+═══════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-tag">Why RM Technologies</span>
+      <h2 class="section-title">Enterprise Scale.<br><span class="gradient-text">Startup Agility.</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="why-icon">⚡</div>
+        <h4>Battle-Tested at Scale</h4>
+        <p>Our systems process 1–2 million transactions daily for a real ₹10–20 Crore FMCG business. We don't just talk scale — we live it.</p>
+      </div>
+      <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="why-icon">🧠</div>
+        <h4>Deep Tech Expertise</h4>
+        <p>AWS Databricks, Kafka, PySpark, Airflow, Delta Lake — our engineers work with cutting-edge enterprise tech daily.</p>
+      </div>
+      <div class="why-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="why-icon">🚀</div>
+        <h4>End-to-End Delivery</h4>
+        <p>From architecture design to CI/CD deployment — we own the full tech lifecycle so you don't have to manage multiple vendors.</p>
+      </div>
+      <div class="why-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="why-icon">🛡️</div>
+        <h4>Data Quality First</h4>
+        <p>Automated validation checks, Delta Lake optimization, and data quality frameworks ensure your data is always reliable.</p>
+      </div>
+      <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="why-icon">💰</div>
+        <h4>Cost-Effective Solutions</h4>
+        <p>Enterprise-grade tech at competitive Indian pricing. Get TCS/Wipro quality without the TCS/Wipro price tag.</p>
+      </div>
+      <div class="why-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="why-icon">🤝</div>
+        <h4>Long-term Partnership</h4>
+        <p>We don't disappear after delivery. Our support, monitoring, and continuous improvement model keeps your systems healthy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-tag">Testimonials</span>
+      <h2 class="section-title">What Our <span class="gradient-text">Clients Say</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="stars">★★★★★</div>
+        <p>"RM Technologies transformed our vendor management completely. What used to take days now happens in real-time. The Databricks pipeline they built is rock-solid."</p>
+        <div class="testi-author">
+          <div class="t-avatar" style="background:linear-gradient(135deg,#00D4FF,#0066FF);">RK</div>
+          <div>
+            <div class="t-name">Rajesh Kumar Agrahari</div>
+            <div class="t-role">Director, Rajesh Masala Udyog Pvt Ltd</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="stars">★★★★★</div>
+        <p>"Their data engineering team built our entire analytics infrastructure from scratch. The AI-powered dashboards give us insights we never had before. Exceptional work!"</p>
+        <div class="testi-author">
+          <div class="t-avatar" style="background:linear-gradient(135deg,#FF6B35,#FF4500);">AK</div>
+          <div>
+            <div class="t-name">Ankit Kumar</div>
+            <div class="t-role">Operations Head, FMCG Sector</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="stars">★★★★★</div>
+        <p>"From mobile app to backend APIs to data pipelines — RM Technologies handled everything. The vendor app has 5000+ active users and zero downtime issues."</p>
+        <div class="testi-author">
+          <div class="t-avatar" style="background:linear-gradient(135deg,#7C3AED,#4F46E5);">PS</div>
+          <div>
+            <div class="t-name">Priya Sharma</div>
+            <div class="t-role">Product Manager, Retail Tech</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════════════════════════════
+     CAREERS CTA
+═══════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="cta-box" data-aos="fade-up">
+      <span class="section-tag">Join The Team</span>
+      <h2>Build Your Career at<br><span class="gradient-text">RM Technologies</span></h2>
+      <p>Work on real enterprise projects processing millions of transactions. Learn cutting-edge tech. Grow fast in Amethi's first data-driven tech company.</p>
+      <div class="cta-btns">
+        <a href="careers.html" class="btn-primary">
+          <i class="fa-solid fa-briefcase"></i> View Open Positions
+        </a>
+        <a href="contact.html" class="btn-secondary">
+          <i class="fa-solid fa-paper-plane"></i> Send Your Resume
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     FOOTER
+═══════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <div class="footer-logo-box">RMT</div>
+          <span class="footer-logo-name">RM Technologies</span>
+        </div>
+        <p>Enterprise Data Engineering, Cloud Solutions & Web Development. The tech powerhouse behind a ₹20Cr+ FMCG empire — now serving external enterprises.</p>
+        <div class="social-links">
+          <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html#data-engineering"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Data Engineering</a></li>
+          <li><a href="services.html#web-dev"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Web Development</a></li>
+          <li><a href="services.html#ai-ml"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> AI & Machine Learning</a></li>
+          <li><a href="services.html#cloud"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Cloud & DevOps</a></li>
+          <li><a href="services.html#consulting"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> IT Consulting</a></li>
+          <li><a href="services.html#security"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Cybersecurity</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="about.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> About Us</a></li>
+          <li><a href="portfolio.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Portfolio</a></li>
+          <li><a href="team.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Our Team</a></li>
+          <li><a href="blog.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Blog</a></li>
+          <li><a href="careers.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Careers</a></li>
+          <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h5>Contact Us</h5>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-envelope"></i>
+          <span><a href="mailto:info@rmtechnologies.in" style="color:var(--text-secondary);">info@rmtechnologies.in</a></span>
+        </div>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 XXXXX XXXXX</span>
+        </div>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Amethi, Uttar Pradesh,<br>India – 227405</span>
+        </div>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-clock"></i>
+          <span>Mon–Sat: 9:00 AM – 6:00 PM IST</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <p>© 2025 RM Technologies. All Rights Reserved.</p>
+        <span class="footer-cin">Parent CIN: U15490UP2020PTC127010 | Rajesh Masala Udyog Pvt Ltd</span>
+      </div>
+      <div class="footer-bottom-right">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="refund.html">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════
+     FLOATING BUTTONS
+═══════════════════════════════════ -->
+<a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<button class="back-top" id="backTop" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- ═══════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════ -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
