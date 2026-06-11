@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RM Technologies - Complete Enterprise Technology Services. Data Engineering, Cloud, AI/ML, Web Development, ERP, Digital Transformation and more.">
+  <title>Services | RM Technologies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── SERVICE PAGE SPECIFIC ── */
+    .services-hero-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .service-hero-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .service-hero-card:hover {
+      border-color: rgba(0,212,255,0.3);
+      transform: translateY(-4px);
+    }
+
+    .service-hero-card .icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .service-hero-card h4 {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .service-hero-card p {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* ── CATEGORY TABS ── */
+    .category-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cat-tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-body);
+      text-decoration: none;
+    }
+
+    .cat-tab:hover,
+    .cat-tab.active {
+      background: rgba(0,212,255,0.08);
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    .cat-tab i { font-size: 0.82rem; }
+
+    /* ── SERVICE CATEGORY SECTION ── */
+    .service-cat-section {
+      margin-bottom: 72px;
+      scroll-margin-top: 100px;
+    }
+
+    .service-cat-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 32px;
+      padding: 24px 28px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      border-left: 4px solid var(--accent-blue);
+    }
+
+    .service-cat-header.orange { border-left-color: var(--accent-orange); }
+    .service-cat-header.purple { border-left-color: var(--accent-purple); }
+    .service-cat-header.green { border-left-color: #28C864; }
+    .service-cat-header.yellow { border-left-color: #FEBC2E; }
+
+    .cat-header-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .cat-header-icon.blue { background: rgba(0,212,255,0.12); color: var(--accent-blue); }
+    .cat-header-icon.orange { background: rgba(255,107,53,0.12); color: var(--accent-orange); }
+    .cat-header-icon.purple { background: rgba(124,58,237,0.12); color: var(--accent-purple); }
+    .cat-header-icon.green { background: rgba(40,200,100,0.12); color: #28C864; }
+    .cat-header-icon.yellow { background: rgba(254,188,46,0.12); color: #FEBC2E; }
+
+    .cat-header-text h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .cat-header-text p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* ── SERVICE CARDS GRID ── */
+    .service-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .svc-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .svc-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient-main);
+      transform: scaleX(0);
+      transition: var(--transition);
+    }
+
+    .svc-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,212,255,0.3);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    }
+
+    .svc-card:hover::before { transform: scaleX(1); }
+
+    .svc-card.orange::before { background: var(--gradient-orange); }
+    .svc-card.purple::before { background: var(--gradient-purple); }
+    .svc-card.green::before { background: linear-gradient(135deg,#28C864,#00A854); }
+    .svc-card.yellow::before { background: linear-gradient(135deg,#FEBC2E,#FF9500); }
+
+    .svc-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+    }
+
+    .svc-icon.blue { background: rgba(0,212,255,0.1); color: var(--accent-blue); }
+    .svc-icon.orange { background: rgba(255,107,53,0.1); color: var(--accent-orange); }
+    .svc-icon.purple { background: rgba(124,58,237,0.1); color: var(--accent-purple); }
+    .svc-icon.green { background: rgba(40,200,100,0.1); color: #28C864; }
+    .svc-icon.yellow { background: rgba(254,188,46,0.1); color: #FEBC2E; }
+
+    .svc-card h4 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .svc-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .svc-features {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    .svc-feature {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .svc-feature i {
+      font-size: 0.6rem;
+      color: var(--accent-blue);
+    }
+
+    .svc-card.orange .svc-feature i { color: var(--accent-orange); }
+    .svc-card.purple .svc-feature i { color: var(--accent-purple); }
+    .svc-card.green .svc-feature i { color: #28C864; }
+    .svc-card.yellow .svc-feature i { color: #FEBC2E; }
+
+    /* ── INDUSTRIES ── */
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .industry-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .industry-card:hover {
+      border-color: rgba(0,212,255,0.3);
+      transform: translateY(-4px);
+    }
+
+    .industry-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .industry-card h4 {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .industry-card p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── ENGAGEMENT MODELS ── */
+    .engagement-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .engagement-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .engagement-card:hover {
+      border-color: rgba(0,212,255,0.3);
+      transform: translateY(-6px);
+    }
+
+    .engagement-card.featured {
+      border-color: rgba(0,212,255,0.4);
+      background: rgba(0,212,255,0.04);
+      position: relative;
+    }
+
+    .engagement-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gradient-main);
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+
+    .engagement-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .engagement-card h4 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .engagement-card p {
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .engagement-features {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+
+    .engagement-features span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .engagement-features span i {
+      color: var(--accent-blue);
+      font-size: 0.65rem;
+    }
+
+    /* ── TECH EXPERTISE ── */
+    .tech-expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+      margin-top: 40px;
+    }
+
+    .tech-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 12px;
+      text-align: center;
+      transition: var(--transition);
+      cursor: default;
+    }
+
+    .tech-item:hover {
+      border-color: rgba(0,212,255,0.3);
+      transform: translateY(-3px);
+    }
+
+    .tech-item-icon {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+
+    .tech-item span {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 1024px) {
+      .service-cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .tech-expertise-grid { grid-template-columns: repeat(4, 1fr); }
+      .services-hero-grid { grid-template-columns: repeat(2, 1fr); }
+      .industry-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media(max-width: 768px) {
+      .service-cards-grid { grid-template-columns: 1fr; }
+      .tech-expertise-grid { grid-template-columns: repeat(3, 1fr); }
+      .engagement-grid { grid-template-columns: 1fr; }
+      .services-hero-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media(max-width: 480px) {
+      .tech-expertise-grid { grid-template-columns: repeat(2, 1fr); }
+      .industry-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-content">
+    <div class="loader-logo">RMT</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    <div class="loader-text">LOADING...</div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-box">RMT</div>
+      <span class="nav-logo-text">RM <span>Technologies</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="team.html">Team</a>
+      <a href="blog.html">Blog</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html" class="nav-cta">Contact Us</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="team.html">Team</a>
+  <a href="blog.html">Blog</a>
+  <a href="careers.html">Careers</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-glow"></div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span class="current">Services</span>
+    </div>
+    <span class="section-tag">Full-Stack Enterprise Solutions</span>
+    <h1 class="section-title" style="font-size:clamp(2rem,4vw,3.2rem);margin-bottom:16px;">
+      Everything Your Enterprise <span class="gradient-text">Needs</span>
+    </h1>
+    <div class="divider"></div>
+    <p class="section-sub" style="margin:0 auto;font-size:1.05rem;">
+      From data pipelines to digital transformation — RM Technologies delivers end-to-end 
+      technology solutions across 6 major practice areas with 30+ specialized services.
+    </p>
+
+    <!-- Quick Stats -->
+    <div class="services-hero-grid" data-aos="fade-up" data-aos-delay="200">
+      <div class="service-hero-card">
+        <div class="icon">🏗️</div>
+        <h4>6 Practice Areas</h4>
+        <p>Data · Cloud · AI · Web · Enterprise · Consulting</p>
+      </div>
+      <div class="service-hero-card">
+        <div class="icon">⚙️</div>
+        <h4>30+ Services</h4>
+        <p>Specialized offerings across all tech domains</p>
+      </div>
+      <div class="service-hero-card">
+        <div class="icon">🏭</div>
+        <h4>8+ Industries</h4>
+        <p>FMCG · Retail · Finance · Healthcare & more</p>
+      </div>
+      <div class="service-hero-card">
+        <div class="icon">🤝</div>
+        <h4>3 Models</h4>
+        <p>Project · Dedicated Team · Staff Augmentation</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN SERVICES -->
+<section class="section">
+  <div class="container">
+
+    <!-- CATEGORY TABS -->
+    <div class="category-tabs" data-aos="fade-up">
+      <a href="#data" class="cat-tab active"><i class="fa-solid fa-database"></i> Data & Analytics</a>
+      <a href="#cloud" class="cat-tab"><i class="fa-solid fa-cloud"></i> Cloud & DevOps</a>
+      <a href="#web" class="cat-tab"><i class="fa-solid fa-globe"></i> Web & Mobile</a>
+      <a href="#ai" class="cat-tab"><i class="fa-solid fa-brain"></i> AI & Automation</a>
+      <a href="#enterprise" class="cat-tab"><i class="fa-solid fa-building"></i> Enterprise Solutions</a>
+      <a href="#consulting" class="cat-tab"><i class="fa-solid fa-handshake"></i> Consulting & Staffing</a>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         1. DATA & ANALYTICS
+    ═══════════════════════════════════ -->
+    <div class="service-cat-section" id="data" data-aos="fade-up">
+      <div class="service-cat-header">
+        <div class="cat-header-icon blue"><i class="fa-solid fa-database"></i></div>
+        <div class="cat-header-text">
+          <h3>Data Engineering & Analytics</h3>
+          <p>From raw ingestion to business intelligence — we build data platforms that scale to millions of records daily.</p>
+        </div>
+      </div>
+
+      <div class="service-cards-grid">
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="50">
+          <div class="svc-icon blue"><i class="fa-solid fa-layer-group"></i></div>
+          <h4>Data Warehouse & Lakehouse</h4>
+          <p>Design and implement modern data warehouses on Snowflake, BigQuery, AWS Redshift, or Databricks Lakehouse architecture.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Snowflake & BigQuery setup</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Medallion Architecture (Bronze/Silver/Gold)</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Delta Lake & Apache Iceberg</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Data modeling & schema design</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag">Snowflake</span>
+            <span class="tag">BigQuery</span>
+            <span class="tag">Redshift</span>
+            <span class="tag">Delta Lake</span>
+          </div>
+        </div>
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-icon blue"><i class="fa-solid fa-pipe-section"></i></div>
+          <h4>ETL / ELT Pipeline Development</h4>
+          <p>Build robust data pipelines with Apache Airflow, dbt, Fivetran, or custom PySpark — batch and real-time.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Apache Airflow orchestration</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> dbt transformation layers</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Real-time Kafka streaming</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Data quality & validation</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag">Airflow</span>
+            <span class="tag">dbt</span>
+            <span class="tag">Kafka</span>
+            <span class="tag">PySpark</span>
+          </div>
+        </div>
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="svc-icon blue"><i class="fa-solid fa-chart-bar"></i></div>
+          <h4>Business Intelligence & Dashboards</h4>
+          <p>Turn raw data into actionable insights with executive dashboards, KPI tracking, and self-service analytics.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Power BI & Tableau dashboards</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Metabase & Apache Superset</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Custom React analytics UIs</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Real-time KPI monitoring</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag">Power BI</span>
+            <span class="tag">Tableau</span>
+            <span class="tag">Metabase</span>
+            <span class="tag">D3.js</span>
+          </div>
+        </div>
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="50">
+          <div class="svc-icon blue"><i class="fa-solid fa-stream"></i></div>
+          <h4>Real-Time Streaming Analytics</h4>
+          <p>Process and analyze data as it flows — from IoT sensors to transaction streams — with sub-second latency.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Apache Kafka & Flink</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> AWS Kinesis streams</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Event-driven architectures</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Real-time alerting systems</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag">Kafka</span>
+            <span class="tag">Flink</span>
+            <span class="tag">Kinesis</span>
+            <span class="tag">Spark Streaming</span>
+          </div>
+        </div>
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-icon blue"><i class="fa-solid fa-shield-check"></i></div>
+          <h4>Data Governance & Quality</h4>
+          <p>Implement data cataloging, lineage tracking, quality frameworks, and master data management across your organization.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Apache Atlas & DataHub</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Great Expectations & dbt tests</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Data lineage & cataloging</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Master data management</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag">DataHub</span>
+            <span class="tag">Great Expectations</span>
+            <span class="tag">dbt</span>
+          </div>
+        </div>
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="svc-icon blue"><i class="fa-solid fa-arrows-spin"></i></div>
+          <h4>Data Migration & Modernization</h4>
+          <p>Migrate from legacy systems to modern cloud data platforms with zero data loss and minimal downtime.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> On-prem to cloud migration</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Legacy database modernization</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Multi-cloud data strategy</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Zero-downtime cutover</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag">AWS DMS</span>
+            <span class="tag">Fivetran</span>
+            <span class="tag">Airbyte</span>
+            <span class="tag">Stitch</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         2. CLOUD & DEVOPS
+    ═══════════════════════════════════ -->
+    <div class="service-cat-section" id="cloud" data-aos="fade-up">
+      <div class="service-cat-header orange">
+        <div class="cat-header-icon orange"><i class="fa-solid fa-cloud"></i></div>
+        <div class="cat-header-text">
+          <h3>Cloud Infrastructure & DevOps</h3>
+          <p>Cloud-native architectures, automated deployments, and infrastructure that never sleeps.</p>
+        </div>
+      </div>
+
+      <div class="service-cards-grid">
+
+        <div class="svc-card orange" data-aos="fade-up" data-aos-delay="50">
+          <div class="svc-icon orange"><i class="fa-brands fa-aws"></i></div>
+          <h4>Cloud Architecture & Migration</h4>
+          <p>Design and migrate to AWS, Azure, or GCP with Well-Architected Framework compliance and cost optimization.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> AWS, Azure & GCP expertise</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Lift & shift migrations</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Cloud-native re-architecture</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Cost optimization & FinOps</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-orange">AWS</span>
+            <span class="tag tag-orange">Azure</span>
+            <span class="tag tag-orange">GCP</span>
+          </div>
+        </div>
+
+        <div class="svc-card orange" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-icon orange"><i class="fa-solid fa-code-branch"></i></div>
+          <h4>CI/CD & DevOps Automation</h4>
+          <p>Automate your entire software delivery lifecycle — from code commit to production deployment in minutes.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> GitHub Actions & Jenkins</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> GitLab CI/CD pipelines</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Blue-green deployments</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Automated testing gates</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-orange">GitHub Actions</span>
+            <span class="tag tag-orange">Jenkins</span>
+            <span class="tag tag-orange">ArgoCD</span>
+          </div>
+        </div>
+
+        <div class="svc-card orange" data-aos="fade-up" data-aos-delay="150">
+          <div class="svc-icon orange"><i class="fa-solid fa-cube"></i></div>
+          <h4>Containerization & Kubernetes</h4>
+          <p>Containerize applications with Docker and orchestrate at scale with Kubernetes for high-availability production workloads.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Docker & Compose setup</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> EKS, AKS, GKE management</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Helm charts & Operators</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Service mesh (Istio)</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-orange">Docker</span>
+            <span class="tag tag-orange">Kubernetes</span>
+            <span class="tag tag-orange">Helm</span>
+          </div>
+        </div>
+
+        <div class="svc-card orange" data-aos="fade-up" data-aos-delay="50">
+          <div class="svc-icon orange"><i class="fa-solid fa-file-code"></i></div>
+          <h4>Infrastructure as Code</h4>
+          <p>Version-controlled, reproducible cloud infrastructure using Terraform, Pulumi, and AWS CloudFormation.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Terraform modules & workspaces</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Pulumi with Python/TypeScript</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> AWS CDK & CloudFormation</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Policy-as-code (OPA/Sentinel)</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-orange">Terraform</span>
+            <span class="tag tag-orange">Pulumi</span>
+            <span class="tag tag-orange">CDK</span>
+          </div>
+        </div>
+
+        <div class="svc-card orange" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-icon orange"><i class="fa-solid fa-chart-line"></i></div>
+          <h4>Monitoring, Logging & Observability</h4>
+          <p>Full-stack observability with metrics, logs, traces, and intelligent alerting for proactive incident management.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Prometheus & Grafana</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> ELK Stack & OpenSearch</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Datadog & New Relic</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> PagerDuty alerting</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-orange">Grafana</span>
+            <span class="tag tag-orange">Prometheus</span>
+            <span class="tag tag-orange">ELK</span>
+          </div>
+        </div>
+
+        <div class="svc-card orange" data-aos="fade-up" data-aos-delay="150">
+          <div class="svc-icon orange"><i class="fa-solid fa-shield-halved"></i></div>
+          <h4>Cloud Security & Compliance</h4>
+          <p>Secure your cloud workloads with IAM best practices, network security, vulnerability scanning, and compliance automation.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> AWS Security Hub & GuardDuty</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Secrets management (Vault)</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> SOC2 & ISO 27001 readiness</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Zero-trust architecture</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-orange">HashiCorp Vault</span>
+            <span class="tag tag-orange">AWS WAF</span>
+            <span class="tag tag-orange">Snyk</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         3. WEB & MOBILE
+    ═══════════════════════════════════ -->
+    <div class="service-cat-section" id="web" data-aos="fade-up">
+      <div class="service-cat-header green">
+        <div class="cat-header-icon green"><i class="fa-solid fa-globe"></i></div>
+        <div class="cat-header-text">
+          <h3>Web & Mobile Development</h3>
+          <p>Enterprise-grade digital products — from consumer apps to complex B2B platforms used by thousands daily.</p>
+        </div>
+      </div>
+
+      <div class="service-cards-grid">
+
+        <div class="svc-card green" data-aos="fade-up" data-aos-delay="50">
+          <div class="svc-icon green"><i class="fa-solid fa-laptop-code"></i></div>
+          <h4>Enterprise Web Applications</h4>
+          <p>Scalable, secure web apps built with React, Next.js, or Vue.js frontends and robust Node.js or Python backends.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> React.js & Next.js frontends</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Node.js & Python FastAPI backends</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Microservices architecture</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Role-based access control</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-purple">React</span>
+            <span class="tag tag-purple">Next.js</span>
+            <span class="tag tag-purple">Node.js</span>
+            <span class="tag tag-purple">FastAPI</span>
+          </div>
+        </div>
+
+        <div class="svc-card green" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-icon green"><i class="fa-solid fa-mobile-screen"></i></div>
+          <h4>Mobile App Development</h4>
+          <p>Cross-platform iOS and Android apps with React Native or Flutter — from MVP to 5000+ active user production apps.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> React Native & Flutter</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Offline-first architecture</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Push notifications & analytics</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> App Store & Play Store deployment</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-purple">React Native</span>
+            <span class="tag tag-purple">Flutter</span>
+            <span class="tag tag-purple">Firebase</span>
+          </div>
+        </div>
+
+        <div class="svc-card green" data-aos="fade-up" data-aos-delay="150">
+          <div class="svc-icon green"><i class="fa-solid fa-cart-shopping"></i></div>
+          <h4>E-Commerce & Marketplace</h4>
+          <p>Full-featured e-commerce platforms with payment gateways, inventory management, vendor portals, and analytics.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Custom & Shopify/WooCommerce</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Multi-vendor marketplace</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Razorpay & Stripe integration</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Inventory & order management</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-purple">Next.js</span>
+            <span class="tag tag-purple">Stripe</span>
+            <span class="tag tag-purple">Razorpay</span>
+          </div>
+        </div>
+
+        <div class="svc-card green" data-aos="fade-up" data-aos-delay="50">
+          <div class="svc-icon green"><i class="fa-solid fa-plug"></i></div>
+          <h4>API Development & Integration</h4>
+          <p>RESTful and GraphQL APIs, third-party integrations, webhooks, and API gateway management for seamless connectivity.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> REST & GraphQL APIs</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Third-party integrations</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> API Gateway & rate limiting</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Webhook systems</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-purple">GraphQL</span>
+            <span class="tag tag-purple">REST</span>
+            <span class="tag tag-purple">AWS API GW</span>
+          </div>
+        </div>
+
+        <div class="svc-card green" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-icon green"><i class="fa-solid fa-palette"></i></div>
+          <h4>UI/UX Design & Prototyping</h4>
+          <p>User-centered design for complex enterprise interfaces — wireframes, prototypes, design systems, and usability testing.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Figma design systems</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> User research & testing</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Responsive & accessible design</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Design-to-code handoff</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-purple">Figma</span>
+            <span class="tag tag-purple">Adobe XD</span>
+            <span class="tag tag-purple">Storybook</span>
+          </div>
+        </div>
+
+        <div class="svc-card green" data-aos="fade-up" data-aos-delay="150">
+          <div class="svc-icon green"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+          <h4>Performance & SEO Optimization</h4>
+          <p>Speed optimization, Core Web Vitals improvement, technical SEO, and conversion rate optimization for web platforms.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Core Web Vitals optimization</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> CDN & caching strategies</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Technical SEO audits</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Load testing & optimization</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-purple">Lighthouse</span>
+            <span class="tag tag-purple">CloudFront</span>
+            <span class="tag tag-purple">GTM</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         4. AI & AUTOMATION
+    ═══════════════════════════════════ -->
+    <div class="service-cat-section" id="ai" data-aos="fade-up">
+      <div class="service-cat-header purple">
+        <div class="cat-header-icon purple"><i class="fa-solid fa-brain"></i></div>
+        <div class="cat-header-text">
+          <h3>AI, ML & Intelligent Automation</h3>
+          <p>From predictive models to LLM-powered assistants — we build AI that delivers measurable business outcomes.</p>
+        </div>
+      </div>
+
+      <div class="service-cards-grid">
+
+        <div class="svc-card purple" data-aos="fade-up" data-aos-delay="50">
+          <div class="svc-icon purple"><i class="fa-solid fa-chart-mixed"></i></div>
+          <h4>Machine Learning & Predictive Analytics</h4>
+          <p>Build ML models for demand forecasting, churn prediction, fraud detection, and operational optimization with measurable ROI.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Demand & sales forecasting</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Customer churn prediction</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Fraud detection models</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> MLflow experiment tracking</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-purple">Scikit-learn</span>
+            <span class="tag tag-purple">XGBoost</span>
+            <span class="tag tag-purple">MLflow</span>
+          </div>
+        </div>
+
+        <div class="svc-card purple" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-icon purple"><i class="fa-solid fa-robot"></i></div>
+          <h4>Generative AI & LLM Solutions</h4>
+          <p>Custom GPT-powered chatbots, document Q&A systems, AI copilots, and enterprise knowledge bases using RAG architecture.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> RAG-based document intelligence</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Custom LLM fine-tuning</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> AI customer support bots</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Internal knowledge assistants</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-purple">OpenAI</span>
+            <span class="tag tag-purple">LangChain</span>
+            <span class="tag tag-purple">LlamaIndex</span>
+          </div>
+        </div>
+
+        <div class="svc-card purple" data-aos="fade-up" data-aos-delay="150">
+          <div class="svc-icon purple"><i class="fa-solid fa-language"></i></div>
+          <h4>NLP & Text Analytics</h4>
+          <p>Extract insights from unstructured text — customer reviews, contracts, emails, and social media at scale.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Sentiment analysis systems</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Named entity recognition</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Document classification</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Hindi/multilingual NLP</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-purple">HuggingFace</span>
+            <span class="tag tag-purple">spaCy</span>
+            <span class="tag tag-purple">NLTK</span>
+          </div>
+        </div>
+
+        <div class="svc-card purple" data-aos="fade-up" data-aos-delay="50">
+          <div class="svc-icon purple"><i class="fa-solid fa-eye"></i></div>
+          <h4>Computer Vision</h4>
+          <p>Visual inspection, OCR, document processing, quality control, and object detection for manufacturing and logistics.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Quality defect detection</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> OCR & document parsing</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Object & face detection</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> CCTV analytics</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-purple">OpenCV</span>
+            <span class="tag tag-purple">YOLO</span>
+            <span class="tag tag-purple">TensorFlow</span>
+          </div>
+        </div>
+
+        <div class="svc-card purple" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-icon purple"><i class="fa-solid fa-gears"></i></div>
+          <h4>Robotic Process Automation</h4>
+          <p>Automate repetitive business processes — invoicing, reporting, data entry, reconciliation — with zero human intervention.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> UiPath & Automation Anywhere</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Python-based automation</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Invoice & PO processing</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Automated reporting systems</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-purple">UiPath</span>
+            <span class="tag tag-purple">Python</span>
+            <span class="tag tag-purple">Selenium</span>
+          </div>
+        </div>
+
+        <div class="svc-card purple" data-aos="fade-up" data-aos-delay="150">
+          <div class="svc-icon purple"><i class="fa-solid fa-flask"></i></div>
+          <h4>MLOps & AI Infrastructure</h4>
+          <p>Production ML infrastructure — model serving, versioning, monitoring, drift detection, and automated retraining pipelines.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> MLflow & Kubeflow</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Model serving with FastAPI</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Feature stores (Feast)</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Model drift monitoring</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-purple">MLflow</span>
+            <span class="tag tag-purple">SageMaker</span>
+            <span class="tag tag-purple">Kubeflow</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         5. ENTERPRISE SOLUTIONS
+    ═══════════════════════════════════ -->
+    <div class="service-cat-section" id="enterprise" data-aos="fade-up">
+      <div class="service-cat-header yellow">
+        <div class="cat-header-icon yellow"><i class="fa-solid fa-building"></i></div>
+        <div class="cat-header-text">
+          <h3>Enterprise Technology Solutions</h3>
+          <p>End-to-end digital transformation — ERP, CRM, supply chain, fintech, and custom enterprise platforms.</p>
+        </div>
+      </div>
+
+      <div class="service-cards-grid">
+
+        <div class="svc-card yellow" data-aos="fade-up" data-aos-delay="50">
+          <div class="svc-icon yellow"><i class="fa-solid fa-network-wired"></i></div>
+          <h4>ERP Integration & Customization</h4>
+          <p>Integrate, customize, or build ERP systems that connect your finance, inventory, HR, and operations into one unified platform.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> SAP & Oracle integration</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Custom ERP development</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Odoo implementation</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Legacy ERP modernization</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-orange">SAP</span>
+            <span class="tag tag-orange">Odoo</span>
+            <span class="tag tag-orange">Oracle</span>
+          </div>
+        </div>
+
+        <div class="svc-card yellow" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-icon yellow"><i class="fa-solid fa-users-gear"></i></div>
+          <h4>CRM Development & Integration</h4>
+          <p>Custom CRM solutions or Salesforce/HubSpot integrations to manage customer relationships, sales pipelines, and support tickets.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Salesforce & HubSpot setup</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Custom CRM development</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Sales pipeline automation</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Customer 360 view</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-orange">Salesforce</span>
+            <span class="tag tag-orange">HubSpot</span>
+            <span class="tag tag-orange">Zoho CRM</span>
+          </div>
+        </div>
+
+        <div class="svc-card yellow" data-aos="fade-up" data-aos-delay="150">
+          <div class="svc-icon yellow"><i class="fa-solid fa-truck"></i></div>
+          <h4>Supply Chain & Vendor Management</h4>
+          <p>End-to-end supply chain technology — vendor onboarding, order management, logistics tracking, and procurement automation.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Vendor portal development</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Order & inventory tracking</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Procurement automation</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Logistics API integrations</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-orange">Custom</span>
+            <span class="tag tag-orange">REST APIs</span>
+            <span class="tag tag-orange">React</span>
+          </div>
+        </div>
+
+        <div class="svc-card yellow" data-aos="fade-up" data-aos-delay="50">
+          <div class="svc-icon yellow"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+          <h4>FinTech & Payment Solutions</h4>
+          <p>Payment gateway integrations, digital wallet systems, financial dashboards, and automated reconciliation for enterprises.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Razorpay & Stripe integration</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> UPI & banking APIs</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Automated reconciliation</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Financial reporting dashboards</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-orange">Razorpay</span>
+            <span class="tag tag-orange">Stripe</span>
+            <span class="tag tag-orange">UPI APIs</span>
+          </div>
+        </div>
+
+        <div class="svc-card yellow" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-icon yellow"><i class="fa-solid fa-chart-pie"></i></div>
+          <h4>HR Tech & Workforce Management</h4>
+          <p>HRMS systems, payroll integration, attendance tracking, performance management, and employee self-service portals.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Custom HRMS development</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Payroll & compliance</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Attendance & leave mgmt</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Performance appraisal systems</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-orange">Custom</span>
+            <span class="tag tag-orange">Darwinbox</span>
+            <span class="tag tag-orange">Greythr</span>
+          </div>
+        </div>
+
+        <div class="svc-card yellow" data-aos="fade-up" data-aos-delay="150">
+          <div class="svc-icon yellow"><i class="fa-solid fa-satellite-dish"></i></div>
+          <h4>IoT & Edge Computing</h4>
+          <p>Connect physical operations to digital systems — factory sensors, cold chain monitoring, fleet tracking, and smart facility management.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> AWS IoT Core setup</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Sensor data pipelines</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Edge ML inference</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Real-time monitoring dashboards</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag tag-orange">AWS IoT</span>
+            <span class="tag tag-orange">MQTT</span>
+            <span class="tag tag-orange">Raspberry Pi</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         6. CONSULTING & STAFFING
+    ═══════════════════════════════════ -->
+    <div class="service-cat-section" id="consulting" data-aos="fade-up">
+      <div class="service-cat-header">
+        <div class="cat-header-icon blue"><i class="fa-solid fa-handshake"></i></div>
+        <div class="cat-header-text">
+          <h3>IT Consulting & Staff Augmentation</h3>
+          <p>The right expertise, at the right time — from CTO advisory to embedded engineering teams.</p>
+        </div>
+      </div>
+
+      <div class="service-cards-grid">
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="50">
+          <div class="svc-icon blue"><i class="fa-solid fa-compass-drafting"></i></div>
+          <h4>Technology Strategy & Architecture</h4>
+          <p>CTO-level advisory for startups and enterprises — tech stack decisions, architecture reviews, roadmap planning, and build-vs-buy analysis.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Tech stack assessment</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Architecture design & review</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Digital transformation roadmap</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Vendor evaluation & selection</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag">Advisory</span>
+            <span class="tag">Strategy</span>
+            <span class="tag">Architecture</span>
+          </div>
+        </div>
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-icon blue"><i class="fa-solid fa-user-plus"></i></div>
+          <h4>Staff Augmentation</h4>
+          <p>On-demand tech talent — Data Engineers, Full Stack Developers, DevOps Engineers, ML Engineers — integrated with your team.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Pre-vetted senior engineers</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> 2-week onboarding SLA</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Flexible engagement (3-12 months)</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> IP & NDA protected</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag">Augmentation</span>
+            <span class="tag">Remote</span>
+            <span class="tag">Hybrid</span>
+          </div>
+        </div>
+
+        <div class="svc-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="svc-icon blue"><i class="fa-solid fa-people-group"></i></div>
+          <h4>Dedicated Development Teams</h4>
+          <p>Your own offshore engineering team — developers, QA, DevOps, PM — managed end-to-end by RM Technologies.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Full team setup in 30 days</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Scrum/Agile delivery</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Transparent reporting</div>
+            <div class="svc-feature"><i class="fa-solid fa-circle"></i> Scalable team size</div>
+          </div>
+          <div class="service-tags">
+            <span class="tag">Dedicated</span>
+            <span class="tag">Managed</span>
+            <span class="tag">Agile</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INDUSTRIES WE SERVE -->
+<section class="section" style="background:rgba(0,0,0,0.15);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-tag">Industries</span>
+      <h2 class="section-title">Who We <span class="gradient-text">Serve</span></h2>
+      <div class="divider"></div>
+      <p class="section-sub">Deep domain expertise across industries where data and technology create the biggest competitive advantages.</p>
+    </div>
+
+    <div class="industry-grid">
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="industry-icon">🏭</div>
+        <h4>FMCG & Manufacturing</h4>
+        <p>Vendor management, supply chain analytics, production monitoring</p>
+      </div>
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="industry-icon">🛒</div>
+        <h4>Retail & E-commerce</h4>
+        <p>Customer analytics, inventory optimization, personalization</p>
+      </div>
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="industry-icon">🏦</div>
+        <h4>Banking & FinTech</h4>
+        <p>Risk analytics, fraud detection, regulatory reporting</p>
+      </div>
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="industry-icon">🏥</div>
+        <h4>Healthcare</h4>
+        <p>Patient analytics, clinical data pipelines, compliance</p>
+      </div>
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="industry-icon">📦</div>
+        <h4>Logistics & Supply Chain</h4>
+        <p>Fleet tracking, route optimization, warehouse management</p>
+      </div>
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="industry-icon">🎓</div>
+        <h4>EdTech</h4>
+        <p>Learning analytics, LMS platforms, student engagement systems</p>
+      </div>
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="industry-icon">🏗️</div>
+        <h4>Real Estate & Infra</h4>
+        <p>Property management systems, construction analytics, IoT</p>
+      </div>
+      <div class="industry-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="industry-icon">⚡</div>
+        <h4>Energy & Utilities</h4>
+        <p>Smart metering, consumption analytics, grid optimization</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH EXPERTISE -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-tag">Tech Arsenal</span>
+      <h2 class="section-title">Technologies We <span class="gradient-text">Master</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="tech-expertise-grid" data-aos="fade-up" data-aos-delay="100">
+      <div class="tech-item"><div class="tech-item-icon">☁️</div><span>AWS</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🔷</div><span>Azure</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🌐</div><span>GCP</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🧱</div><span>Databricks</span></div>
+      <div class="tech-item"><div class="tech-item-icon">❄️</div><span>Snowflake</span></div>
+      <div class="tech-item"><div class="tech-item-icon">📊</div><span>BigQuery</span></div>
+      <div class="tech-item"><div class="tech-item-icon">⚡</div><span>Apache Kafka</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🌀</div><span>Apache Airflow</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🔥</div><span>PySpark</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🔺</div><span>Delta Lake</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🔧</div><span>dbt</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🐍</div><span>Python</span></div>
+      <div class="tech-item"><div class="tech-item-icon">⚛️</div><span>React.js</span></div>
+      <div class="tech-item"><div class="tech-item-icon">▲</div><span>Next.js</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🟢</div><span>Node.js</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🐳</div><span>Docker</span></div>
+      <div class="tech-item"><div class="tech-item-icon">☸️</div><span>Kubernetes</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🏗️</div><span>Terraform</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🤖</div><span>TensorFlow</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🔦</div><span>PyTorch</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🦜</div><span>LangChain</span></div>
+      <div class="tech-item"><div class="tech-item-icon">📈</div><span>Power BI</span></div>
+      <div class="tech-item"><div class="tech-item-icon">📉</div><span>Tableau</span></div>
+      <div class="tech-item"><div class="tech-item-icon">🐘</div><span>PostgreSQL</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENT MODELS -->
+<section class="section" style="background:rgba(0,0,0,0.15);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-tag">How We Engage</span>
+      <h2 class="section-title">Flexible <span class="gradient-text">Engagement Models</span></h2>
+      <div class="divider"></div>
+      <p class="section-sub">Choose the model that fits your project, timeline, and budget — or mix and match.</p>
+    </div>
+
+    <div class="engagement-grid" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="engagement-card">
+        <div class="engagement-icon">📦</div>
+        <h4>Fixed Price Project</h4>
+        <p>Clear scope, defined deliverables, fixed budget. Best for MVPs, specific features, and well-defined projects.</p>
+        <div class="engagement-features">
+          <span><i class="fa-solid fa-check"></i> Fixed cost & timeline</span>
+          <span><i class="fa-solid fa-check"></i> Milestone-based payments</span>
+          <span><i class="fa-solid fa-check"></i> Detailed SLA</span>
+          <span><i class="fa-solid fa-check"></i> IP ownership to client</span>
+        </div>
+      </div>
+
+      <div class="engagement-card featured">
+        <div class="engagement-icon">👥</div>
+        <h4>Dedicated Team</h4>
+        <p>Your own extended engineering team — fully managed, transparently reported, flexibly scaled.</p>
+        <div class="engagement-features">
+          <span><i class="fa-solid fa-check"></i> 3–15 person teams</span>
+          <span><i class="fa-solid fa-check"></i> Agile/Scrum delivery</span>
+          <span><i class="fa-solid fa-check"></i> Daily standups & reports</span>
+          <span><i class="fa-solid fa-check"></i> Scale up/down monthly</span>
+        </div>
+      </div>
+
+      <div class="engagement-card">
+        <div class="engagement-icon">⏱️</div>
+        <h4>Time & Material</h4>
+        <p>Pay for actual work done. Best for ongoing projects, evolving requirements, and R&D engagements.</p>
+        <div class="engagement-features">
+          <span><i class="fa-solid fa-check"></i> Hourly/monthly billing</span>
+          <span><i class="fa-solid fa-check"></i> Full flexibility</span>
+          <span><i class="fa-solid fa-check"></i> Weekly timesheets</span>
+          <span><i class="fa-solid fa-check"></i> Start in 1 week</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="container">
+    <div class="cta-box" data-aos="fade-up">
+      <span class="section-tag">Start Today</span>
+      <h2>Let's Solve Your<br><span class="gradient-text">Biggest Tech Challenge</span></h2>
+      <p>From a 30-minute discovery call to a full project proposal — we move fast and deliver faster.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn-primary">
+          <i class="fa-solid fa-calendar-check"></i> Book Free Consultation
+        </a>
+        <a href="portfolio.html" class="btn-secondary">
+          <i class="fa-solid fa-briefcase"></i> See Our Work
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <div class="footer-logo-box">RMT</div>
+          <span class="footer-logo-name">RM Technologies</span>
+        </div>
+        <p>Full-stack enterprise technology — Data, Cloud, AI, Web & Consulting. Tech subsidiary of Rajesh Masala Udyog Pvt Ltd.</p>
+        <div class="social-links">
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Practice Areas</h5>
+        <ul>
+          <li><a href="#data"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Data & Analytics</a></li>
+          <li><a href="#cloud"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Cloud & DevOps</a></li>
+          <li><a href="#web"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Web & Mobile</a></li>
+          <li><a href="#ai"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> AI & Automation</a></li>
+          <li><a href="#enterprise"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Enterprise Solutions</a></li>
+          <li><a href="#consulting"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Consulting & Staffing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="about.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> About Us</a></li>
+          <li><a href="portfolio.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Portfolio</a></li>
+          <li><a href="team.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Our Team</a></li>
+          <li><a href="blog.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Blog</a></li>
+          <li><a href="careers.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Careers</a></li>
+          <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact Us</h5>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-envelope"></i>
+          <span><a href="mailto:info@rmtechnologies.in" style="color:var(--text-secondary);">info@rmtechnologies.in</a></span>
+        </div>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 XXXXX XXXXX</span>
+        </div>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Amethi, Uttar Pradesh, India – 227405</span>
+        </div>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-clock"></i>
+          <span>Mon–Sat: 9:00 AM – 6:00 PM IST</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <p>© 2025 RM Technologies. All Rights Reserved.</p>
+        <span class="footer-cin">Parent CIN: U15490UP2020PTC127010 | Rajesh Masala Udyog Pvt Ltd</span>
+      </div>
+      <div class="footer-bottom-right">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="refund.html">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-float" target="_blank">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<button class="back-top" id="backTop">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // Category tab active on scroll
+  const catSections = document.querySelectorAll('.service-cat-section');
+  const catTabs = document.querySelectorAll('.cat-tab');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    catSections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 140) current = s.id;
+    });
+    catTabs.forEach(tab => {
+      tab.classList.remove('active');
+      if (tab.getAttribute('href') === '#' + current) tab.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
