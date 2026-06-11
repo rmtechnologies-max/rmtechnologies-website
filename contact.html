@@ -1,292 +1,60 @@
+cat > contact.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact RM Technologies - Get in touch for enterprise tech solutions, project inquiries, partnerships, and career opportunities. Based in Amethi, UP.">
+  <meta name="description" content="Contact RM Technologies - Get in touch for enterprise tech solutions, project inquiries, partnerships, and career opportunities.">
   <title>Contact Us | RM Technologies</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .contact-cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-top: 48px;
-    }
-    .contact-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 20px;
-      text-align: center;
-      transition: var(--transition);
-    }
-    .contact-card:hover {
-      border-color: rgba(0,212,255,0.35);
-      transform: translateY(-6px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
-    }
-    .cc-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: var(--radius);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      margin: 0 auto 16px;
-    }
-    .cc-icon.blue { background: rgba(0,212,255,0.1); color: var(--accent-blue); }
-    .cc-icon.orange { background: rgba(255,107,53,0.1); color: var(--accent-orange); }
-    .cc-icon.purple { background: rgba(124,58,237,0.1); color: var(--accent-purple); }
-    .cc-icon.green { background: rgba(40,200,100,0.1); color: #28C864; }
-
-    .contact-card h4 {
-      font-family: var(--font-heading);
-      font-size: 0.92rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .contact-card p {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-    .contact-card a {
-      color: var(--accent-blue);
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-    .contact-card a:hover { color: var(--text-primary); }
-
-    /* Contact Layout */
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .contact-form-box {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 40px;
-    }
-    .contact-form-box h3 {
-      font-family: var(--font-heading);
-      font-size: 1.3rem;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-    .contact-form-box .sub {
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      margin-bottom: 28px;
-    }
-
-    /* Info Side */
-    .contact-info-box {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .info-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      transition: var(--transition);
-    }
-    .info-card:hover {
-      border-color: rgba(0,212,255,0.3);
-      transform: translateX(4px);
-    }
-    .info-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-      background: rgba(0,212,255,0.1);
-      color: var(--accent-blue);
-    }
-    .info-card h4 {
-      font-family: var(--font-heading);
-      font-size: 0.9rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .info-card p {
-      font-size: 0.84rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-    .info-card a {
-      color: var(--accent-blue);
-      transition: var(--transition);
-    }
-    .info-card a:hover { color: var(--text-primary); }
-
-    /* Response Promise */
-    .response-box {
-      background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(0,102,255,0.04));
-      border: 1px solid rgba(0,212,255,0.2);
-      border-radius: var(--radius);
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .response-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--gradient-main);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      color: white;
-      flex-shrink: 0;
-    }
-    .response-box h4 {
-      font-family: var(--font-heading);
-      font-size: 0.92rem;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .response-box p {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-
-    /* Social Section */
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      text-align: center;
-      transition: var(--transition);
-      display: block;
-      color: inherit;
-    }
-      border-color: rgba(0,212,255,0.3);
-      transform: translateY(-4px);
-      color: inherit;
-    }
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-      display: block;
-    }
-      font-family: var(--font-heading);
-      font-size: 0.82rem;
-      font-weight: 700;
-      display: block;
-      margin-bottom: 4px;
-    }
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
-
-    /* Map */
-    .map-container {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      margin-top: 40px;
-    }
-    .map-container iframe {
-      width: 100%;
-      height: 350px;
-      border: none;
-      filter: invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.2);
-    }
-
-    /* Departments */
-    .dept-contacts {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 40px;
-    }
-    .dept-contact-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      transition: var(--transition);
-    }
-    .dept-contact-card:hover {
-      border-color: rgba(0,212,255,0.3);
-      transform: translateY(-4px);
-    }
-    .dept-contact-card h4 {
-      font-family: var(--font-heading);
-      font-size: 0.9rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .dept-contact-card p {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-    .dept-contact-card a {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      color: var(--accent-blue);
-      font-weight: 500;
-      transition: var(--transition);
-    }
-    .dept-contact-card a:hover { color: var(--text-primary); }
-    .dept-contact-card a i { font-size: 0.72rem; }
-
-    @media(max-width: 1024px) {
-      .contact-cards { grid-template-columns: repeat(2, 1fr); }
-      .contact-layout { grid-template-columns: 1fr; }
-      .dept-contacts { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media(max-width: 768px) {
-      .contact-cards { grid-template-columns: 1fr; }
-      .dept-contacts { grid-template-columns: 1fr; }
-      .contact-form-box { padding: 24px; }
-    }
+    .contact-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}
+    .contact-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;transition:var(--transition)}
+    .contact-card:hover{border-color:rgba(0,212,255,0.35);transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,0.3)}
+    .cc-icon{width:52px;height:52px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin:0 auto 16px}
+    .cc-icon.blue{background:rgba(0,212,255,0.1);color:var(--accent-blue)}
+    .cc-icon.orange{background:rgba(255,107,53,0.1);color:var(--accent-orange)}
+    .cc-icon.green{background:rgba(40,200,100,0.1);color:#28C864}
+    .cc-icon.purple{background:rgba(124,58,237,0.1);color:var(--accent-purple)}
+    .contact-card h4{font-family:var(--font-heading);font-size:0.92rem;font-weight:700;margin-bottom:8px}
+    .contact-card p{font-size:0.82rem;color:var(--text-secondary);line-height:1.6}
+    .contact-card a{color:var(--accent-blue);font-size:0.85rem;font-weight:600}
+    .contact-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:start}
+    .contact-form-box{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px}
+    .contact-form-box h3{font-family:var(--font-heading);font-size:1.3rem;font-weight:800;margin-bottom:6px}
+    .contact-form-box .sub{font-size:0.88rem;color:var(--text-secondary);margin-bottom:28px}
+    .info-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;align-items:flex-start;gap:16px;transition:var(--transition);margin-bottom:16px}
+    .info-card:hover{border-color:rgba(0,212,255,0.3);transform:translateX(4px)}
+    .info-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;background:rgba(0,212,255,0.1);color:var(--accent-blue)}
+    .info-card h4{font-family:var(--font-heading);font-size:0.9rem;font-weight:700;margin-bottom:6px}
+    .info-card p{font-size:0.84rem;color:var(--text-secondary);line-height:1.6}
+    .info-card a{color:var(--accent-blue)}
+    .response-box{background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(0,102,255,0.04));border:1px solid rgba(0,212,255,0.2);border-radius:var(--radius);padding:20px 24px;display:flex;align-items:center;gap:14px;margin-top:16px}
+    .response-icon{width:44px;height:44px;background:var(--gradient-main);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:white;flex-shrink:0}
+    .response-box h4{font-family:var(--font-heading);font-size:0.92rem;font-weight:700;margin-bottom:2px}
+    .response-box p{font-size:0.8rem;color:var(--text-secondary)}
+    .dept-contacts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+    .dept-contact-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:var(--transition)}
+    .dept-contact-card:hover{border-color:rgba(0,212,255,0.3);transform:translateY(-4px)}
+    .dept-contact-card h4{font-family:var(--font-heading);font-size:0.9rem;font-weight:700;margin-bottom:4px}
+    .dept-contact-card p{font-size:0.78rem;color:var(--text-muted);margin-bottom:10px}
+    .dept-contact-card a{display:flex;align-items:center;gap:6px;font-size:0.82rem;color:var(--accent-blue);font-weight:500}
+    .dept-contact-card a i{font-size:0.72rem}
+    .map-container{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin-top:40px}
+    .map-container iframe{width:100%;height:350px;border:none;filter:invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.2)}
+    @media(max-width:1024px){.contact-cards{grid-template-columns:repeat(2,1fr)}.contact-layout{grid-template-columns:1fr}.dept-contacts{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:768px){.contact-cards{grid-template-columns:1fr}.dept-contacts{grid-template-columns:1fr}.contact-form-box{padding:24px}}
   </style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-content">
-    <div class="loader-logo">RMT</div>
-    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
-    <div class="loader-text">LOADING...</div>
-  </div>
-</div>
+<div id="loader"><div class="loader-content"><div class="loader-logo">RMT</div><div class="loader-bar"><div class="loader-bar-fill"></div></div><div class="loader-text">LOADING...</div></div></div>
 
-<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <div class="nav-container">
-    <a href="index.html" class="nav-logo">
-      <div class="nav-logo-box">RMT</div>
-      <span class="nav-logo-text">RM <span>Technologies</span></span>
-    </a>
+    <a href="index.html" class="nav-logo"><div class="nav-logo-box">RMT</div><span class="nav-logo-text">RM <span>Technologies</span></span></a>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -296,30 +64,21 @@
       <a href="careers.html">Careers</a>
       <a href="contact.html" class="nav-cta active">Contact Us</a>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-nav" id="mobileNav">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="services.html">Services</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="blog.html">Blog</a>
-  <a href="careers.html">Careers</a>
-  <a href="contact.html">Contact Us</a>
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a><a href="blog.html">Blog</a>
+  <a href="careers.html">Careers</a><a href="contact.html">Contact Us</a>
 </div>
 
-<!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-grid"></div>
   <div class="page-hero-glow"></div>
   <div class="container" style="position:relative;z-index:2;">
     <div class="breadcrumb">
-      <a href="index.html">Home</a>
-      <span class="sep">/</span>
-      <span class="current">Contact</span>
+      <a href="index.html">Home</a><span class="sep">/</span><span class="current">Contact</span>
     </div>
     <span class="section-tag">Get In Touch</span>
     <h1 class="section-title" style="font-size:clamp(2rem,4vw,3.2rem);margin-bottom:16px;">
@@ -327,283 +86,284 @@
     </h1>
     <div class="divider"></div>
     <p class="section-sub" style="margin:0 auto;font-size:1.05rem;">
-      Whether it's a data pipeline, a web platform, or a complete digital transformation — we're ready to help. Reach out and let's talk.
+      Whether it's a data pipeline, a web platform, or a complete digital transformation — we're ready to help.
     </p>
   </div>
 </section>
 
-<!-- CONTACT CARDS -->
 <section class="section-sm">
   <div class="container">
     <div class="contact-cards">
-
       <div class="contact-card" data-aos="fade-up" data-aos-delay="50">
         <div class="cc-icon blue"><i class="fa-solid fa-envelope"></i></div>
         <h4>Email Us</h4>
         <p>For project inquiries and general questions</p>
         <a href="mailto:info@rmtechnologies.in">info@rmtechnologies.in</a>
       </div>
-
       <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
         <div class="cc-icon orange"><i class="fa-solid fa-phone"></i></div>
         <h4>Call Us</h4>
         <p>Mon–Sat, 9:00 AM – 6:00 PM IST</p>
-        <a href="tel:+917570000370">+91 7570000370</a>
+        <a href="tel:+917570000370">+91 75700 00370</a>
       </div>
-
       <div class="contact-card" data-aos="fade-up" data-aos-delay="150">
         <div class="cc-icon green"><i class="fa-brands fa-whatsapp"></i></div>
         <h4>WhatsApp</h4>
         <p>Quick response on business hours</p>
         <a href="https://wa.me/917570000370" target="_blank">Chat on WhatsApp</a>
       </div>
-
       <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
         <div class="cc-icon purple"><i class="fa-solid fa-location-dot"></i></div>
         <h4>Visit Us</h4>
         <p>Amethi, Uttar Pradesh, India</p>
         <a href="#map">View on Map</a>
       </div>
-
     </div>
   </div>
 </section>
 
 <hr class="section-divider">
 
-<!-- CONTACT FORM + INFO -->
 <section class="section">
   <div class="container">
     <div class="contact-layout">
 
-      <!-- LEFT: INFO -->
-      <div class="contact-info-box" data-aos="fade-right">
-
-        <div>
-          <span class="section-tag">Contact Information</span>
-          <h2 class="section-title" style="font-size:1.7rem;">
-            We'd Love to <span class="gradient-text">Hear From You</span>
-          </h2>
-          <div class="divider-left"></div>
-          <p style="color:var(--text-secondary);font-size:0.92rem;line-height:1.8;margin-bottom:24px;">
-            Have a project idea? Need a tech consultation? Want to partner with us? 
-            Or just want to say hello? Drop us a message and our team will get back to you within 2 hours during business hours.
-          </p>
-        </div>
+      <div data-aos="fade-right">
+        <span class="section-tag">Contact Information</span>
+        <h2 class="section-title" style="font-size:1.7rem;">We'd Love to <span class="gradient-text">Hear From You</span></h2>
+        <div class="divider-left"></div>
+        <p style="color:var(--text-secondary);font-size:0.92rem;line-height:1.8;margin-bottom:24px;">
+          Have a project idea? Need a tech consultation? Want to partner with us? Drop us a message and our team will get back to you within 2 hours during business hours.
+        </p>
 
         <div class="info-card">
           <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
-          <div>
-            <h4>General Inquiries</h4>
-            <p><a href="mailto:info@rmtechnologies.in">info@rmtechnologies.in</a></p>
-          </div>
+          <div><h4>General Inquiries</h4><p><a href="mailto:info@rmtechnologies.in">info@rmtechnologies.in</a></p></div>
         </div>
-
         <div class="info-card">
           <div class="info-icon" style="background:rgba(255,107,53,0.1);color:var(--accent-orange);"><i class="fa-solid fa-briefcase"></i></div>
-          <div>
-            <h4>Project Discussions</h4>
-            <p><a href="mailto:projects@rmtechnologies.in">projects@rmtechnologies.in</a></p>
-          </div>
+          <div><h4>Project Discussions</h4><p><a href="mailto:projects@rmtechnologies.in">projects@rmtechnologies.in</a></p></div>
         </div>
-
         <div class="info-card">
           <div class="info-icon" style="background:rgba(124,58,237,0.1);color:var(--accent-purple);"><i class="fa-solid fa-user-tie"></i></div>
-          <div>
-            <h4>Career & HR</h4>
-            <p><a href="mailto:careers@rmtechnologies.in">careers@rmtechnologies.in</a></p>
-          </div>
+          <div><h4>Career & HR</h4><p><a href="mailto:careers@rmtechnologies.in">careers@rmtechnologies.in</a></p></div>
         </div>
-
         <div class="info-card">
           <div class="info-icon" style="background:rgba(40,200,100,0.1);color:#28C864;"><i class="fa-solid fa-headset"></i></div>
-          <div>
-            <h4>Technical Support</h4>
-            <p><a href="mailto:support@rmtechnologies.in">support@rmtechnologies.in</a></p>
-          </div>
+          <div><h4>Technical Support</h4><p><a href="mailto:support@rmtechnologies.in">support@rmtechnologies.in</a></p></div>
         </div>
-
         <div class="info-card">
           <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
-          <div>
-            <h4>Phone</h4>
-            <p>+91 7570000370<br><small style="color:var(--text-muted);">Mon–Sat, 9:00 AM – 6:00 PM IST</small></p>
-          </div>
+          <div><h4>Phone</h4><p><a href="tel:+917570000370">+91 75700 00370</a><br><small style="color:var(--text-muted);">Mon–Sat, 9:00 AM – 6:00 PM IST</small></p></div>
         </div>
-
         <div class="info-card">
           <div class="info-icon" style="background:rgba(255,107,53,0.1);color:var(--accent-orange);"><i class="fa-solid fa-building"></i></div>
-          <div>
-            <h4>Registered Office</h4>
-            <p>Amethi, Uttar Pradesh,<br>India – 227405</p>
-            <p style="margin-top:6px;"><small style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;">Parent: Rajesh Masala Udyog Pvt Ltd<br>CIN: U15490UP2020PTC127010</small></p>
-          </div>
+          <div><h4>Registered Office</h4><p>Amethi, Uttar Pradesh, India – 227405</p><p style="margin-top:6px;"><small style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;">Parent: Rajesh Masala Udyog Pvt Ltd<br>CIN: U15490UP2020PTC127010</small></p></div>
         </div>
 
         <div class="response-box">
           <div class="response-icon"><i class="fa-solid fa-bolt"></i></div>
-          <div>
-            <h4>Quick Response Promise</h4>
-            <p>We respond to every inquiry within 2 hours during business hours. Most project discussions start within 24 hours.</p>
-          </div>
+          <div><h4>Quick Response Promise</h4><p>We respond to every inquiry within 2 hours during business hours.</p></div>
         </div>
-
       </div>
 
-      <!-- RIGHT: FORM -->
       <div class="contact-form-box" data-aos="fade-left">
         <h3>Send Us a Message</h3>
         <p class="sub">Fill out the form below and we'll get back to you shortly</p>
-
         <form id="contactForm" action="https://formspree.io/f/xkoaqjdb" method="POST">
-
           <div class="form-row">
-            <div class="form-group">
-              <label>Full Name *</label>
-              <input type="text" name="name" required placeholder="Your full name">
-            </div>
-            <div class="form-group">
-              <label>Email *</label>
-              <input type="email" name="email" required placeholder="your@email.com">
-            </div>
+            <div class="form-group"><label>Full Name *</label><input type="text" name="name" required placeholder="Your full name"></div>
+            <div class="form-group"><label>Email *</label><input type="email" name="email" required placeholder="your@email.com"></div>
           </div>
-
           <div class="form-row">
-            <div class="form-group">
-              <label>Phone</label>
-              <input type="tel" name="phone" placeholder="+91 7570000370">
-            </div>
-            <div class="form-group">
-              <label>Company / Organization</label>
-              <input type="text" name="company" placeholder="Your company name">
-            </div>
+            <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="+91 75700 00370"></div>
+            <div class="form-group"><label>Company</label><input type="text" name="company" placeholder="Your company name"></div>
           </div>
-
           <div class="form-group">
             <label>Subject *</label>
             <select name="subject" required>
               <option value="">Select a Subject</option>
-              <option value="Project Inquiry">📋 Project Inquiry / New Project</option>
-              <option value="Data Engineering">📊 Data Engineering Consultation</option>
+              <option value="Project Inquiry">📋 Project Inquiry</option>
+              <option value="Data Engineering">📊 Data Engineering</option>
               <option value="Web Development">🌐 Web / Mobile Development</option>
               <option value="AI/ML Solutions">🤖 AI / ML Solutions</option>
               <option value="Cloud & DevOps">☁️ Cloud & DevOps</option>
-              <option value="Staff Augmentation">👥 Staff Augmentation / Hiring</option>
-              <option value="Partnership">🤝 Partnership Opportunity</option>
-              <option value="Career Inquiry">💼 Career / Job Inquiry</option>
+              <option value="Staff Augmentation">👥 Staff Augmentation</option>
+              <option value="Partnership">🤝 Partnership</option>
+              <option value="Career Inquiry">💼 Career Inquiry</option>
               <option value="Technical Support">🔧 Technical Support</option>
               <option value="General Inquiry">💬 General Inquiry</option>
             </select>
           </div>
-
           <div class="form-group">
-            <label>Project Budget (Optional)</label>
+            <label>Budget (Optional)</label>
             <select name="budget">
-              <option value="">Select Budget Range</option>
+              <option value="">Select Budget</option>
               <option value="Under 5L">Under ₹5 Lakhs</option>
               <option value="5L-15L">₹5 – 15 Lakhs</option>
               <option value="15L-50L">₹15 – 50 Lakhs</option>
-              <option value="50L-1Cr">₹50 Lakhs – 1 Crore</option>
+              <option value="50L-1Cr">₹50L – 1 Crore</option>
               <option value="Above 1Cr">Above ₹1 Crore</option>
-              <option value="Not Sure">Not Sure Yet</option>
+              <option value="Not Sure">Not Sure</option>
             </select>
           </div>
-
-          <div class="form-group">
-            <label>Message *</label>
-            <textarea name="message" rows="5" required placeholder="Tell us about your project, requirements, timeline, and any other details..."></textarea>
-          </div>
-
-          <div class="form-group" style="margin-bottom:24px;">
-            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.82rem;">
-              <input type="checkbox" name="nda" style="width:auto;accent-color:var(--accent-blue);">
-              I'd like to sign an NDA before sharing detailed requirements
-            </label>
-          </div>
-
+          <div class="form-group"><label>Message *</label><textarea name="message" rows="5" required placeholder="Tell us about your project..."></textarea></div>
           <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:14px;">
             <i class="fa-solid fa-paper-plane"></i> Send Message
           </button>
-
-          <div class="form-msg" id="formSuccess">
-            <i class="fa-solid fa-check-circle"></i>
-            Message sent successfully! We'll respond within 2 hours during business hours.
-          </div>
-
-          <div class="form-msg" id="formError">
-            <i class="fa-solid fa-exclamation-circle"></i>
-            Something went wrong. Please email us directly at info@rmtechnologies.in
-          </div>
-
+          <div class="form-msg" id="formSuccess"><i class="fa-solid fa-check-circle"></i> Message sent successfully! We'll respond within 2 hours.</div>
+          <div class="form-msg" id="formError"><i class="fa-solid fa-exclamation-circle"></i> Something went wrong. Please email info@rmtechnologies.in</div>
         </form>
       </div>
-
     </div>
   </div>
 </section>
 
 <hr class="section-divider">
 
-<!-- DEPARTMENT CONTACTS -->
 <section class="section">
   <div class="container">
     <div class="text-center" data-aos="fade-up">
       <span class="section-tag">Direct Lines</span>
       <h2 class="section-title">Department <span class="gradient-text">Contacts</span></h2>
       <div class="divider"></div>
-      <p class="section-sub">Reach the right team directly for faster response.</p>
     </div>
-
     <div class="dept-contacts">
-
       <div class="dept-contact-card" data-aos="fade-up" data-aos-delay="50">
         <h4>🏢 General & Business</h4>
         <p>Company info, partnerships, media</p>
         <a href="mailto:info@rmtechnologies.in"><i class="fa-solid fa-envelope"></i> info@rmtechnologies.in</a>
       </div>
-
       <div class="dept-contact-card" data-aos="fade-up" data-aos-delay="100">
         <h4>📋 Projects & Sales</h4>
         <p>New projects, proposals, RFPs</p>
         <a href="mailto:projects@rmtechnologies.in"><i class="fa-solid fa-envelope"></i> projects@rmtechnologies.in</a>
       </div>
-
       <div class="dept-contact-card" data-aos="fade-up" data-aos-delay="150">
         <h4>💼 Careers & HR</h4>
-        <p>Job applications, internships, HR</p>
+        <p>Job applications, internships</p>
         <a href="mailto:careers@rmtechnologies.in"><i class="fa-solid fa-envelope"></i> careers@rmtechnologies.in</a>
       </div>
-
       <div class="dept-contact-card" data-aos="fade-up" data-aos-delay="50">
         <h4>🔧 Technical Support</h4>
-        <p>Existing client support, bugs, issues</p>
+        <p>Client support, bugs, issues</p>
         <a href="mailto:support@rmtechnologies.in"><i class="fa-solid fa-envelope"></i> support@rmtechnologies.in</a>
       </div>
-
       <div class="dept-contact-card" data-aos="fade-up" data-aos-delay="100">
         <h4>💰 Billing & Accounts</h4>
         <p>Invoices, payments, finance</p>
         <a href="mailto:accounts@rmtechnologies.in"><i class="fa-solid fa-envelope"></i> accounts@rmtechnologies.in</a>
       </div>
-
       <div class="dept-contact-card" data-aos="fade-up" data-aos-delay="150">
         <h4>🛡️ Legal & Compliance</h4>
-        <p>NDAs, contracts, data privacy</p>
+        <p>NDAs, contracts, privacy</p>
         <a href="mailto:legal@rmtechnologies.in"><i class="fa-solid fa-envelope"></i> legal@rmtechnologies.in</a>
       </div>
-
     </div>
   </div>
 </section>
 
 <hr class="section-divider">
 
-<!-- SOCIAL MEDIA -->
-<section class="section">
+<section class="section" id="map">
   <div class="container">
     <div class="text-center" data-aos="fade-up">
-      <span class="section-tag">Follow Us</span>
-      <h2 class="section-title">Connect on <span class="gradient-text">Social Media</span></h2>
+      <span class="section-tag">Our Location</span>
+      <h2 class="section-title">Find Us in <span class="gradient-text">Amethi, UP</span></h2>
       <div class="divider"></div>
     </div>
+    <div class="map-container" data-aos="fade-up" data-aos-delay="100">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113927.69831018536!2d81.58!3d26.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399a05f0f4e0e1e3%3A0x2e3e1e8a0d8f8f0!2sAmethi%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:24px;" data-aos="fade-up">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:18px;display:flex;align-items:center;gap:12px;">
+        <i class="fa-solid fa-building" style="color:var(--accent-blue);font-size:1.1rem;"></i>
+        <div><div style="font-size:0.82rem;font-weight:600;">Registered Office</div><div style="font-size:0.75rem;color:var(--text-muted);">Amethi, UP – 227405</div></div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:18px;display:flex;align-items:center;gap:12px;">
+        <i class="fa-solid fa-clock" style="color:var(--accent-orange);font-size:1.1rem;"></i>
+        <div><div style="font-size:0.82rem;font-weight:600;">Office Hours</div><div style="font-size:0.75rem;color:var(--text-muted);">Mon–Sat: 9 AM – 6 PM IST</div></div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:18px;display:flex;align-items:center;gap:12px;">
+        <i class="fa-solid fa-globe" style="color:#28C864;font-size:1.1rem;"></i>
+        <div><div style="font-size:0.82rem;font-weight:600;">Remote Team</div><div style="font-size:0.75rem;color:var(--text-muted);">Engineers across India</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="section">
+  <div class="container">
+    <div class="cta-box" data-aos="fade-up">
+      <span class="section-tag">Quick Start</span>
+      <h2>Prefer a <span class="gradient-text">Quick Call?</span></h2>
+      <p>Schedule a free 30-minute discovery call with our team. No commitments, no pressure.</p>
+      <div class="cta-btns">
+        <a href="tel:+917570000370" class="btn-primary"><i class="fa-solid fa-phone"></i> Call +91 75700 00370</a>
+        <a href="services.html" class="btn-secondary"><i class="fa-solid fa-grid-2"></i> Explore Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <div class="footer-logo-box">RMT</div>
+          <span class="footer-logo-name">RM Technologies</span>
+        </div>
+        <p>Full-stack enterprise technology — Data, Cloud, AI, Web & Consulting. Tech subsidiary of Rajesh Masala Udyog Pvt Ltd.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html#data"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Data & Analytics</a></li>
+          <li><a href="services.html#cloud"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Cloud & DevOps</a></li>
+          <li><a href="services.html#web"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Web & Mobile</a></li>
+          <li><a href="services.html#ai"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> AI & Automation</a></li>
+          <li><a href="services.html#enterprise"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Enterprise</a></li>
+          <li><a href="services.html#consulting"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Consulting</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="about.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> About Us</a></li>
+          <li><a href="portfolio.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Portfolio</a></li>
+          <li><a href="blog.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Blog</a></li>
+          <li><a href="careers.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Careers</a></li>
+          <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact Us</h5>
+        <div class="footer-contact-row"><i class="fa-solid fa-envelope"></i><span><a href="mailto:info@rmtechnologies.in" style="color:var(--text-secondary);">info@rmtechnologies.in</a></span></div>
+        <div class="footer-contact-row"><i class="fa-solid fa-phone"></i><span><a href="tel:+917570000370" style="color:var(--text-secondary);">+91 75700 00370</a></span></div>
+        <div class="footer-contact-row"><i class="fa-solid fa-location-dot"></i><span>Amethi, Uttar Pradesh, India – 227405</span></div>
+        <div class="footer-contact-row"><i class="fa-solid fa-clock"></i><span>Mon–Sat: 9:00 AM – 6:00 PM IST</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <p>&copy; 2025 RM Technologies. All Rights Reserved.</p>
+        <span class="footer-cin">Parent CIN: U15490UP2020PTC127010 | Rajesh Masala Udyog Pvt Ltd</span>
+      </div>
+      <div class="footer-bottom-right">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="refund.html">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/917570000370" class="whatsapp-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="back-top" id="backTop"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+HTMLEOF
