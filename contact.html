@@ -171,12 +171,10 @@
     }
 
     /* Social Section */
-    .social-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 14px;
     }
-    .social-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -186,24 +184,20 @@
       display: block;
       color: inherit;
     }
-    .social-card:hover {
       border-color: rgba(0,212,255,0.3);
       transform: translateY(-4px);
       color: inherit;
     }
-    .social-card i {
       font-size: 1.6rem;
       margin-bottom: 10px;
       display: block;
     }
-    .social-card span {
       font-family: var(--font-heading);
       font-size: 0.82rem;
       font-weight: 700;
       display: block;
       margin-bottom: 4px;
     }
-    .social-card small {
       font-size: 0.72rem;
       color: var(--text-muted);
     }
@@ -270,7 +264,6 @@
     }
     @media(max-width: 768px) {
       .contact-cards { grid-template-columns: 1fr; }
-      .social-grid { grid-template-columns: repeat(2, 1fr); }
       .dept-contacts { grid-template-columns: 1fr; }
       .contact-form-box { padding: 24px; }
     }
@@ -614,172 +607,3 @@
       <div class="divider"></div>
     </div>
 
-    <div class="social-grid" style="max-width:700px;margin:40px auto 0;" data-aos="fade-up" data-aos-delay="100">
-      <a href="#" class="social-card" target="_blank">
-        <i class="fa-brands fa-github" style="color:#0A66C2;"></i>
-        <span>LinkedIn</span>
-        <small>Follow for updates</small>
-      </a>
-      <a href="#" class="social-card" target="_blank">
-        <i class="fa-brands fa-github" style="color:var(--text-primary);"></i>
-        <span>GitHub</span>
-        <small>Open source projects</small>
-      </a>
-      <a href="#" class="social-card" target="_blank">
-        <i class="fa-brands fa-github" style="color:var(--text-primary);"></i>
-        <span>Twitter / X</span>
-        <small>Tech insights</small>
-      </a>
-      <a href="#" class="social-card" target="_blank">
-        <i class="fa-brands fa-instagram" style="color:#E1306C;"></i>
-        <span>Instagram</span>
-        <small>Life at RMT</small>
-      </a>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- MAP -->
-<section class="section" id="map">
-  <div class="container">
-    <div class="text-center" data-aos="fade-up">
-      <span class="section-tag">Our Location</span>
-      <h2 class="section-title">Find Us in <span class="gradient-text">Amethi, UP</span></h2>
-      <div class="divider"></div>
-      <p class="section-sub">Located in the heart of Amethi, Uttar Pradesh — where India's FMCG strength meets cutting-edge tech innovation.</p>
-    </div>
-
-    <div class="map-container" data-aos="fade-up" data-aos-delay="100">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113927.69831018536!2d81.58!3d26.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399a05f0f4e0e1e3%3A0x2e3e1e8a0d8f8f0!2sAmethi%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:24px;" data-aos="fade-up">
-      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:18px;display:flex;align-items:center;gap:12px;">
-        <i class="fa-solid fa-building" style="color:var(--accent-blue);font-size:1.1rem;"></i>
-        <div>
-          <div style="font-size:0.82rem;font-weight:600;">Registered Office</div>
-          <div style="font-size:0.75rem;color:var(--text-muted);">Amethi, UP – 227405</div>
-        </div>
-      </div>
-      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:18px;display:flex;align-items:center;gap:12px;">
-        <i class="fa-solid fa-clock" style="color:var(--accent-orange);font-size:1.1rem;"></i>
-        <div>
-          <div style="font-size:0.82rem;font-weight:600;">Office Hours</div>
-          <div style="font-size:0.75rem;color:var(--text-muted);">Mon–Sat: 9:00 AM – 6:00 PM IST</div>
-        </div>
-      </div>
-      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:18px;display:flex;align-items:center;gap:12px;">
-        <i class="fa-solid fa-globe" style="color:#28C864;font-size:1.1rem;"></i>
-        <div>
-          <div style="font-size:0.82rem;font-weight:600;">Remote Team</div>
-          <div style="font-size:0.75rem;color:var(--text-muted);">Engineers across India</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="section">
-  <div class="container">
-    <div class="cta-box" data-aos="fade-up">
-      <span class="section-tag">Quick Start</span>
-      <h2>Prefer a <span class="gradient-text">Quick Call?</span></h2>
-      <p>Schedule a free 30-minute discovery call with our team. No commitments, no pressure — just a conversation about your tech needs.</p>
-      <div class="cta-btns">
-        <a href="mailto:info@rmtechnologies.in?subject=Discovery Call Request" class="btn-primary">
-          <i class="fa-solid fa-calendar-check"></i> Schedule Discovery Call
-        </a>
-        <a href="services.html" class="btn-secondary">
-          <i class="fa-solid fa-grid-2"></i> Explore Services
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-brand-logo">
-          <div class="footer-logo-box">RMT</div>
-          <span class="footer-logo-name">RM Technologies</span>
-        </div>
-        <p>Full-stack enterprise technology — Data, Cloud, AI, Web & Consulting. Tech subsidiary of Rajesh Masala Udyog Pvt Ltd.</p>
-        <div class="social-links">
-          <a href="#" class="social-btn"><i class="fa-brands fa-github"></i></a>
-          <a href="#" class="social-btn"><i class="fa-brands fa-github"></i></a>
-          <a href="#" class="social-btn"><i class="fa-brands fa-github"></i></a>
-          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h5>Services</h5>
-        <ul>
-          <li><a href="services.html#data"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Data & Analytics</a></li>
-          <li><a href="services.html#cloud"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Cloud & DevOps</a></li>
-          <li><a href="services.html#web"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Web & Mobile</a></li>
-          <li><a href="services.html#ai"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> AI & Automation</a></li>
-          <li><a href="services.html#enterprise"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Enterprise</a></li>
-          <li><a href="services.html#consulting"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Consulting</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Quick Links</h5>
-        <ul>
-          <li><a href="about.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> About Us</a></li>
-          <li><a href="portfolio.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Portfolio</a></li>
-          <li><a href="blog.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Blog</a></li>
-          <li><a href="careers.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Careers</a></li>
-          <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Contact Us</h5>
-        <div class="footer-contact-row">
-          <i class="fa-solid fa-envelope"></i>
-          <span><a href="mailto:info@rmtechnologies.in" style="color:var(--text-secondary);">info@rmtechnologies.in</a></span>
-        </div>
-        <div class="footer-contact-row">
-          <i class="fa-solid fa-phone"></i>
-          <span>+91 7570000370</span>
-        </div>
-        <div class="footer-contact-row">
-          <i class="fa-solid fa-location-dot"></i>
-          <span>Amethi, Uttar Pradesh, India – 227405</span>
-        </div>
-        <div class="footer-contact-row">
-          <i class="fa-solid fa-clock"></i>
-          <span>Mon–Sat: 9:00 AM – 6:00 PM IST</span>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-bottom-left">
-        <p>© 2025 RM Technologies. All Rights Reserved.</p>
-        <span class="footer-cin">Parent CIN: U15490UP2020PTC127010 | Rajesh Masala Udyog Pvt Ltd</span>
-      </div>
-      <div class="footer-bottom-right">
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms & Conditions</a>
-        <a href="refund.html">Refund Policy</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<a href="https://wa.me/917570000370" class="whatsapp-float" target="_blank">
-  <i class="fa-brands fa-whatsapp"></i>
-</a>
-<button class="back-top" id="backTop">
-  <i class="fa-solid fa-arrow-up"></i>
-</button>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="js/main.js"></script>
-</body>
-</html>
