@@ -1,48 +1,53 @@
-# Wordpress - ignore core, configuration, examples, uploads and logs.
-# https://github.com/github/gitignore/blob/main/WordPress.gitignore
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
 
-# Core
-#
-# Note: if you want to stage/commit WP core files
-# you can delete this whole section/until Configuration.
-/wp-admin/
-/wp-content/index.php
-/wp-content/languages
-/wp-content/plugins/index.php
-/wp-content/themes/index.php
-/wp-includes/
-/index.php
-/license.txt
-/readme.html
-/wp-*.php
-/xmlrpc.php
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Configuration
-wp-config.php
+# Node (agar future mein use karein)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
 
-# Example themes
-/wp-content/themes/twenty*/
+# Build Files
+dist/
+build/
+.cache/
 
-# Example plugin
-/wp-content/plugins/hello.php
+# Environment Files
+.env
+.env.local
+.env.production
 
-# Uploads
-/wp-content/uploads/
-
-# Log files
+# Logs
+logs/
 *.log
 
-# htaccess
-/.htaccess
+# Temp Files
+tmp/
+temp/
+*.tmp
 
-# All plugins
-#
-# Note: If you wish to whitelist plugins,
-# uncomment the next line
-#/wp-content/plugins
+# CSS Preprocessors (agar use karein)
+*.sass-cache/
 
-# All themes
-#
-# Note: If you wish to whitelist themes,
-# uncomment the next line
-#/wp-content/themes
+# Image Cache
+.image-cache/
+
+# Backup Files
+*.bak
+*.backup
+
+# ZIP files
+*.zip
+*.rar
