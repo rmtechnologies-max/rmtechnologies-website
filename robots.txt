@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rmtechnologies.in/sitemap.xml
+
+# Disallow admin or sensitive pages
+Disallow: /assets/

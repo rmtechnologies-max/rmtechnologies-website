@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | RM Technologies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .error-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(0,212,255,0.06), transparent 70%);
+    }
+    .error-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .error-content { position: relative; z-index: 2; max-width: 600px; padding: 40px 24px; }
+    .error-code {
+      font-family: var(--font-heading);
+      font-size: clamp(6rem, 15vw, 10rem);
+      font-weight: 900;
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+      margin-bottom: 16px;
+      animation: floatAnim 4s ease-in-out infinite;
+    }
+    .error-title {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+    .error-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .error-code-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      text-align: left;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .error-code-block .kw { color: var(--accent-blue); }
+    .error-code-block .st { color: var(--accent-orange); }
+    .error-code-block .cm { color: #4A5568; }
+    .error-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-box">RMT</div>
+      <span class="nav-logo-text">RM <span>Technologies</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a><a href="careers.html">Careers</a>
+      <a href="contact.html" class="nav-cta">Contact Us</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a><a href="careers.html">Careers</a><a href="contact.html">Contact Us</a>
+</div>
+
+<section class="error-page">
+  <div class="error-bg"></div>
+  <div class="error-grid"></div>
+  <div class="error-content">
+    <div class="error-code">404</div>
+    <h1 class="error-title">Page Not Found</h1>
+    <p class="error-desc">Looks like this page got lost in the data pipeline. Don't worry — our engineers are on it. Let's get you back on track.</p>
+    <div class="error-code-block">
+      <div><span class="cm">// Error Report</span></div>
+      <div><span class="kw">status</span>: <span class="st">"404 Not Found"</span></div>
+      <div><span class="kw">message</span>: <span class="st">"The requested page does not exist"</span></div>
+      <div><span class="kw">suggestion</span>: <span class="st">"Go back to homepage"</span></div>
+      <div><span class="kw">support</span>: <span class="st">"info@rmtechnologies.in"</span></div>
+    </div>
+    <div class="error-btns">
+      <a href="index.html" class="btn-primary"><i class="fa-solid fa-house"></i> Back to Home</a>
+      <a href="contact.html" class="btn-secondary"><i class="fa-solid fa-envelope"></i> Contact Support</a>
+    </div>
+  </div>
+</section>
+
+<script src="js/main.js"></script>
+</body>
+</html>
