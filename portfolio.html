@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RM Technologies Portfolio - Enterprise projects across Data Engineering, Cloud, AI/ML, Web Development and Digital Transformation.">
+  <title>Portfolio | RM Technologies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .portfolio-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .portfolio-stat {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+    .portfolio-stat-num {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .portfolio-stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .featured-project {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid rgba(0,212,255,0.3);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      margin-bottom: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-project::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,212,255,0.06), transparent);
+      pointer-events: none;
+    }
+    .fp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gradient-main);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-family: var(--font-mono);
+      margin-bottom: 16px;
+    }
+    .fp-visual {
+      background: linear-gradient(135deg, #071525, #0D2137, rgba(0,212,255,0.1));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      position: relative;
+    }
+    .fp-arch {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      text-align: center;
+    }
+    .arch-layer {
+      background: rgba(0,212,255,0.06);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 8px;
+      padding: 14px 10px;
+    }
+    .arch-layer-name {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      margin-bottom: 6px;
+    }
+    .arch-layer-desc {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .fp-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+    .fp-flow-arrow { color: var(--accent-blue); }
+    .fp-results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .fp-result {
+      background: rgba(0,212,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .fp-result-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      background: rgba(0,212,255,0.1);
+      color: var(--accent-blue);
+    }
+    .fp-result-val {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+    .fp-result-key {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    /* Project Grid Cards */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 32px;
+    }
+    .pf-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      display: block;
+      color: inherit;
+    }
+    .pf-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0,212,255,0.35);
+      box-shadow: var(--shadow-card);
+      color: inherit;
+    }
+    .pf-thumb {
+      height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .pf-thumb-icon { font-size: 3rem; opacity: 0.5; }
+    .pf-industry-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      color: white;
+      letter-spacing: 1px;
+    }
+    .pf-body { padding: 22px; }
+    .pf-client {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--accent-blue);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .pf-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .pf-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .pf-metrics {
+      display: flex;
+      gap: 0;
+      margin-bottom: 14px;
+      background: rgba(0,212,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .pf-metric {
+      flex: 1;
+      text-align: center;
+      padding: 10px 6px;
+      border-right: 1px solid var(--border);
+    }
+    .pf-metric:last-child { border-right: none; }
+    .pf-metric-val {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+    }
+    .pf-metric-key {
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .pf-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      transition: var(--transition);
+    }
+    .pf-link:hover { gap: 10px; }
+    .pf-link i { font-size: 0.75rem; transition: var(--transition); }
+
+    @media(max-width: 1024px) {
+      .featured-project { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .portfolio-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media(max-width: 768px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+    }
+    @media(max-width: 480px) {
+      .portfolio-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-content">
+    <div class="loader-logo">RMT</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    <div class="loader-text">LOADING...</div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-box">RMT</div>
+      <span class="nav-logo-text">RM <span>Technologies</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="team.html">Team</a>
+      <a href="blog.html">Blog</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html" class="nav-cta">Contact Us</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="team.html">Team</a>
+  <a href="blog.html">Blog</a>
+  <a href="careers.html">Careers</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-glow"></div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span class="current">Portfolio</span>
+    </div>
+    <span class="section-tag">Our Work</span>
+    <h1 class="section-title" style="font-size:clamp(2rem,4vw,3.2rem);margin-bottom:16px;">
+      Projects That <span class="gradient-text">Deliver Results</span>
+    </h1>
+    <div class="divider"></div>
+    <p class="section-sub" style="margin:0 auto;font-size:1.05rem;">
+      Real enterprise projects. Real measurable outcomes. From data platforms processing millions of transactions to AI systems saving crores in costs.
+    </p>
+
+    <div class="portfolio-stats" data-aos="fade-up" data-aos-delay="200">
+      <div class="portfolio-stat">
+        <div class="portfolio-stat-num">50+</div>
+        <div class="portfolio-stat-label">Projects Delivered</div>
+      </div>
+      <div class="portfolio-stat">
+        <div class="portfolio-stat-num">12+</div>
+        <div class="portfolio-stat-label">Enterprise Clients</div>
+      </div>
+      <div class="portfolio-stat">
+        <div class="portfolio-stat-num">8</div>
+        <div class="portfolio-stat-label">Industries Served</div>
+      </div>
+      <div class="portfolio-stat">
+        <div class="portfolio-stat-num">99.9%</div>
+        <div class="portfolio-stat-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<section class="section-sm" style="border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="filters" data-aos="fade-up">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="data">Data Engineering</button>
+      <button class="filter-btn" data-filter="cloud">Cloud & DevOps</button>
+      <button class="filter-btn" data-filter="ai">AI & ML</button>
+      <button class="filter-btn" data-filter="web">Web & Mobile</button>
+      <button class="filter-btn" data-filter="enterprise">Enterprise</button>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECT -->
+<section class="section">
+  <div class="container">
+
+    <div data-aos="fade-up">
+      <span class="section-tag">⭐ Featured Case Study</span>
+      <h2 class="section-title" style="margin-bottom:32px;">Enterprise FMCG <span class="gradient-text">Data Platform</span></h2>
+    </div>
+
+    <div class="featured-project" data-aos="fade-up">
+
+      <div>
+        <div class="fp-badge"><i class="fa-solid fa-star"></i> Flagship Project</div>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;font-weight:800;margin-bottom:8px;">Enterprise Vendor Data Platform</h3>
+        <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--accent-blue);margin-bottom:16px;">CLIENT: Leading FMCG Manufacturer · INDUSTRY: Food & Beverages</div>
+
+        <p style="color:var(--text-secondary);font-size:0.92rem;line-height:1.8;margin-bottom:16px;">
+          Designed and deployed an end-to-end enterprise data platform for one of India's fastest-growing FMCG companies. The platform centralized order management, vendor analytics, and sales reporting across 5000+ active vendors processing millions of orders monthly.
+        </p>
+
+        <h4 style="font-family:var(--font-heading);font-size:0.95rem;font-weight:700;margin-bottom:10px;">Challenge</h4>
+        <p style="color:var(--text-secondary);font-size:0.86rem;line-height:1.7;margin-bottom:16px;">
+          Data from 5000+ vendors flowed through multiple channels — vendor databases, REST APIs, purchase systems, websites, and even SMS-based ordering. No centralized analytics, no real-time visibility, and manual reporting taking days.
+        </p>
+
+        <h4 style="font-family:var(--font-heading);font-size:0.95rem;font-weight:700;margin-bottom:10px;">Solution</h4>
+        <p style="color:var(--text-secondary);font-size:0.86rem;line-height:1.7;margin-bottom:16px;">
+          Built a Medallion Architecture (Bronze → Silver → Gold) on AWS Databricks with Kafka and REST API ingestion, PySpark transformations, Apache Airflow orchestration, Delta Lake optimization, automated data quality checks, and CI/CD deployment pipelines.
+        </p>
+
+        <div class="service-tags" style="margin-bottom:20px;gap:8px;">
+          <span class="tag">AWS Databricks</span>
+          <span class="tag">Apache Kafka</span>
+          <span class="tag">PySpark</span>
+          <span class="tag">Apache Airflow</span>
+          <span class="tag">Delta Lake</span>
+          <span class="tag">AWS S3</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">Python</span>
+        </div>
+
+        <div class="fp-results-grid">
+          <div class="fp-result">
+            <div class="fp-result-icon"><i class="fa-solid fa-store"></i></div>
+            <div><div class="fp-result-val">5000+</div><div class="fp-result-key">Vendors Managed</div></div>
+          </div>
+          <div class="fp-result">
+            <div class="fp-result-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div><div class="fp-result-val">1-2M/Day</div><div class="fp-result-key">Orders Processed</div></div>
+          </div>
+          <div class="fp-result">
+            <div class="fp-result-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+            <div><div class="fp-result-val">₹20Cr+/Month</div><div class="fp-result-key">Revenue Supported</div></div>
+          </div>
+          <div class="fp-result">
+            <div class="fp-result-icon"><i class="fa-solid fa-clock"></i></div>
+            <div><div class="fp-result-val">60% Faster</div><div class="fp-result-key">Reporting Time</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fp-visual">
+        <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);margin-bottom:16px;letter-spacing:2px;">ARCHITECTURE OVERVIEW</div>
+        <div class="fp-arch">
+          <div class="arch-layer" style="border-color:rgba(255,107,53,0.3);">
+            <div class="arch-layer-name" style="color:var(--accent-orange);">🥉 BRONZE</div>
+            <div class="arch-layer-desc">Raw ingestion from Kafka, REST APIs, vendor DBs, SMS channels. AWS S3 storage.</div>
+          </div>
+          <div class="arch-layer" style="border-color:rgba(0,212,255,0.3);">
+            <div class="arch-layer-name">🥈 SILVER</div>
+            <div class="arch-layer-desc">PySpark validation, dedup, JSON flattening, schema enforcement, business rules.</div>
+          </div>
+          <div class="arch-layer" style="border-color:rgba(40,200,100,0.3);">
+            <div class="arch-layer-name" style="color:#28C864;">🥇 GOLD</div>
+            <div class="arch-layer-desc">Curated Delta tables for analytics, reporting, dashboards, vendor KPIs.</div>
+          </div>
+        </div>
+        <div class="fp-flow">
+          <span>Sources</span>
+          <span class="fp-flow-arrow">→</span>
+          <span>Kafka/API</span>
+          <span class="fp-flow-arrow">→</span>
+          <span>S3</span>
+          <span class="fp-flow-arrow">→</span>
+          <span>Databricks</span>
+          <span class="fp-flow-arrow">→</span>
+          <span>Gold Tables</span>
+          <span class="fp-flow-arrow">→</span>
+          <span>Dashboards</span>
+        </div>
+
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border);">
+          <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);margin-bottom:12px;">KEY CAPABILITIES</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--text-secondary);">
+              <i class="fa-solid fa-check-circle" style="color:var(--accent-blue);font-size:0.7rem;"></i> Kafka + REST API multi-channel ingestion
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--text-secondary);">
+              <i class="fa-solid fa-check-circle" style="color:var(--accent-blue);font-size:0.7rem;"></i> PySpark schema validation & deduplication
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--text-secondary);">
+              <i class="fa-solid fa-check-circle" style="color:var(--accent-blue);font-size:0.7rem;"></i> Airflow batch + near real-time orchestration
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--text-secondary);">
+              <i class="fa-solid fa-check-circle" style="color:var(--accent-blue);font-size:0.7rem;"></i> Delta Lake optimization & time-travel
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--text-secondary);">
+              <i class="fa-solid fa-check-circle" style="color:var(--accent-blue);font-size:0.7rem;"></i> AI-powered pipeline failure analysis
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--text-secondary);">
+              <i class="fa-solid fa-check-circle" style="color:var(--accent-blue);font-size:0.7rem;"></i> Automated CI/CD deployment workflows
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider" style="margin-bottom:60px;">
+
+    <!-- ALL PROJECTS GRID -->
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-tag">All Projects</span>
+      <h2 class="section-title">Enterprise <span class="gradient-text">Portfolio</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="portfolio-grid">
+
+      <!-- Project 1: Snowflake Migration -->
+      <div class="pf-card" data-category="data" data-aos="fade-up" data-aos-delay="50">
+        <div class="pf-thumb pt-1">
+          <div class="pf-thumb-icon">❄️</div>
+          <div class="pf-industry-badge">RETAIL</div>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">Retail Enterprise Client</div>
+          <h3>Snowflake Data Warehouse Migration</h3>
+          <p>Migrated 15+ legacy databases to Snowflake with dbt transformation layers, reducing query times by 85% and enabling self-service analytics for 200+ users.</p>
+          <div class="pf-metrics">
+            <div class="pf-metric"><div class="pf-metric-val">15+</div><div class="pf-metric-key">Databases</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">85%</div><div class="pf-metric-key">Faster Queries</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">200+</div><div class="pf-metric-key">Users</div></div>
+          </div>
+          <div class="service-tags" style="margin-bottom:14px;">
+            <span class="tag">Snowflake</span>
+            <span class="tag">dbt</span>
+            <span class="tag">Fivetran</span>
+            <span class="tag">Power BI</span>
+          </div>
+          <span class="pf-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Project 2: AI Order Prediction -->
+      <div class="pf-card" data-category="ai" data-aos="fade-up" data-aos-delay="100">
+        <div class="pf-thumb pt-2">
+          <div class="pf-thumb-icon">🤖</div>
+          <div class="pf-industry-badge">FMCG</div>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">FMCG Manufacturer</div>
+          <h3>AI-Powered Demand Forecasting System</h3>
+          <p>Built ML models predicting order volumes across 5000+ vendor locations with 87% accuracy, reducing overstock by 32% and saving ₹2.5Cr annually in inventory costs.</p>
+          <div class="pf-metrics">
+            <div class="pf-metric"><div class="pf-metric-val">87%</div><div class="pf-metric-key">Accuracy</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">₹2.5Cr</div><div class="pf-metric-key">Annual Savings</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">32%</div><div class="pf-metric-key">Less Overstock</div></div>
+          </div>
+          <div class="service-tags" style="margin-bottom:14px;">
+            <span class="tag tag-purple">Python</span>
+            <span class="tag tag-purple">XGBoost</span>
+            <span class="tag tag-purple">SageMaker</span>
+            <span class="tag tag-purple">MLflow</span>
+          </div>
+          <span class="pf-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Project 3: Cloud Migration -->
+      <div class="pf-card" data-category="cloud" data-aos="fade-up" data-aos-delay="150">
+        <div class="pf-thumb pt-4">
+          <div class="pf-thumb-icon">☁️</div>
+          <div class="pf-industry-badge">HEALTHCARE</div>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">HealthTech Startup</div>
+          <h3>AWS Cloud Migration & DevOps Setup</h3>
+          <p>Migrated monolithic healthcare platform to AWS microservices architecture with Kubernetes, reducing infrastructure costs by 40% and achieving 99.99% uptime.</p>
+          <div class="pf-metrics">
+            <div class="pf-metric"><div class="pf-metric-val">40%</div><div class="pf-metric-key">Cost Reduction</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">99.99%</div><div class="pf-metric-key">Uptime</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">3x</div><div class="pf-metric-key">Deploy Speed</div></div>
+          </div>
+          <div class="service-tags" style="margin-bottom:14px;">
+            <span class="tag tag-orange">AWS</span>
+            <span class="tag tag-orange">EKS</span>
+            <span class="tag tag-orange">Terraform</span>
+            <span class="tag tag-orange">GitHub Actions</span>
+          </div>
+          <span class="pf-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Project 4: Vendor Mobile App -->
+      <div class="pf-card" data-category="web" data-aos="fade-up" data-aos-delay="50">
+        <div class="pf-thumb pt-3">
+          <div class="pf-thumb-icon">📱</div>
+          <div class="pf-industry-badge">FMCG</div>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">FMCG Distribution Network</div>
+          <h3>Vendor Mobile App & B2B Portal</h3>
+          <p>Built a cross-platform mobile app for 5000+ vendors with real-time order placement, delivery tracking, payment history, and push notifications across iOS and Android.</p>
+          <div class="pf-metrics">
+            <div class="pf-metric"><div class="pf-metric-val">5000+</div><div class="pf-metric-key">Active Users</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">4.7★</div><div class="pf-metric-key">Rating</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">Zero</div><div class="pf-metric-key">Downtime</div></div>
+          </div>
+          <div class="service-tags" style="margin-bottom:14px;">
+            <span class="tag tag-purple">React Native</span>
+            <span class="tag tag-purple">Node.js</span>
+            <span class="tag tag-purple">MongoDB</span>
+            <span class="tag tag-purple">Firebase</span>
+          </div>
+          <span class="pf-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Project 5: Real-Time Dashboard -->
+      <div class="pf-card" data-category="data" data-aos="fade-up" data-aos-delay="100">
+        <div class="pf-thumb pt-5">
+          <div class="pf-thumb-icon">📊</div>
+          <div class="pf-industry-badge">LOGISTICS</div>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">Logistics Enterprise</div>
+          <h3>Real-Time Operations Dashboard</h3>
+          <p>Built a live operations dashboard tracking fleet movements, delivery SLAs, driver performance, and route optimization for 500+ vehicles across 12 states.</p>
+          <div class="pf-metrics">
+            <div class="pf-metric"><div class="pf-metric-val">500+</div><div class="pf-metric-key">Vehicles</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">12</div><div class="pf-metric-key">States</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">Real-time</div><div class="pf-metric-key">Tracking</div></div>
+          </div>
+          <div class="service-tags" style="margin-bottom:14px;">
+            <span class="tag">React</span>
+            <span class="tag">Kafka</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Grafana</span>
+          </div>
+          <span class="pf-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Project 6: E-commerce Platform -->
+      <div class="pf-card" data-category="web" data-aos="fade-up" data-aos-delay="150">
+        <div class="pf-thumb pt-6">
+          <div class="pf-thumb-icon">🛒</div>
+          <div class="pf-industry-badge">E-COMMERCE</div>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">D2C Brand</div>
+          <h3>Full-Stack E-Commerce Platform</h3>
+          <p>Built a high-performance D2C e-commerce platform with Next.js, headless CMS, Razorpay payments, automated inventory, and personalized product recommendations.</p>
+          <div class="pf-metrics">
+            <div class="pf-metric"><div class="pf-metric-val">50K+</div><div class="pf-metric-key">Monthly Users</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">3.2s</div><div class="pf-metric-key">Load Time</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">22%</div><div class="pf-metric-key">Conv. Rate</div></div>
+          </div>
+          <div class="service-tags" style="margin-bottom:14px;">
+            <span class="tag tag-purple">Next.js</span>
+            <span class="tag tag-purple">Stripe</span>
+            <span class="tag tag-purple">Razorpay</span>
+            <span class="tag tag-purple">Sanity</span>
+          </div>
+          <span class="pf-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Project 7: NLP Chatbot -->
+      <div class="pf-card" data-category="ai" data-aos="fade-up" data-aos-delay="50">
+        <div class="pf-thumb pt-2">
+          <div class="pf-thumb-icon">💬</div>
+          <div class="pf-industry-badge">FINTECH</div>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">FinTech Startup</div>
+          <h3>AI Customer Support Assistant</h3>
+          <p>Deployed a RAG-based LLM chatbot handling 80% of customer queries automatically with multi-language support (Hindi + English), reducing support costs by 60%.</p>
+          <div class="pf-metrics">
+            <div class="pf-metric"><div class="pf-metric-val">80%</div><div class="pf-metric-key">Automation</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">60%</div><div class="pf-metric-key">Cost Saved</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">2</div><div class="pf-metric-key">Languages</div></div>
+          </div>
+          <div class="service-tags" style="margin-bottom:14px;">
+            <span class="tag tag-purple">LangChain</span>
+            <span class="tag tag-purple">OpenAI</span>
+            <span class="tag tag-purple">Pinecone</span>
+            <span class="tag tag-purple">FastAPI</span>
+          </div>
+          <span class="pf-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Project 8: ERP Integration -->
+      <div class="pf-card" data-category="enterprise" data-aos="fade-up" data-aos-delay="100">
+        <div class="pf-thumb pt-5">
+          <div class="pf-thumb-icon">🏗️</div>
+          <div class="pf-industry-badge">MANUFACTURING</div>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">Manufacturing Group</div>
+          <h3>ERP Integration & Custom Modules</h3>
+          <p>Integrated Odoo ERP with existing vendor management, accounting, and HR systems. Built custom modules for production planning, quality control, and procurement automation.</p>
+          <div class="pf-metrics">
+            <div class="pf-metric"><div class="pf-metric-val">8</div><div class="pf-metric-key">Modules</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">300+</div><div class="pf-metric-key">Users</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">45%</div><div class="pf-metric-key">Time Saved</div></div>
+          </div>
+          <div class="service-tags" style="margin-bottom:14px;">
+            <span class="tag tag-orange">Odoo</span>
+            <span class="tag tag-orange">Python</span>
+            <span class="tag tag-orange">PostgreSQL</span>
+            <span class="tag tag-orange">REST API</span>
+          </div>
+          <span class="pf-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Project 9: Data Lake for EdTech -->
+      <div class="pf-card" data-category="data" data-aos="fade-up" data-aos-delay="150">
+        <div class="pf-thumb pt-4">
+          <div class="pf-thumb-icon">🎓</div>
+          <div class="pf-industry-badge">EDTECH</div>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">EdTech Platform</div>
+          <h3>Student Analytics Data Lake</h3>
+          <p>Built a cloud data lake on AWS for an EdTech platform processing 10M+ learning events daily — enabling personalized learning paths, engagement scoring, and content recommendations.</p>
+          <div class="pf-metrics">
+            <div class="pf-metric"><div class="pf-metric-val">10M+</div><div class="pf-metric-key">Events/Day</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">500K</div><div class="pf-metric-key">Students</div></div>
+            <div class="pf-metric"><div class="pf-metric-val">35%</div><div class="pf-metric-key">Better Engagement</div></div>
+          </div>
+          <div class="service-tags" style="margin-bottom:14px;">
+            <span class="tag">AWS Glue</span>
+            <span class="tag">Athena</span>
+            <span class="tag">S3</span>
+            <span class="tag">QuickSight</span>
+          </div>
+          <span class="pf-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background:rgba(0,0,0,0.15);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="cta-box" data-aos="fade-up">
+      <span class="section-tag">Your Project Next</span>
+      <h2>Have a Project <span class="gradient-text">in Mind?</span></h2>
+      <p>Let's discuss how RM Technologies can deliver measurable results for your business — just like we've done for enterprises across 8+ industries.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn-primary">
+          <i class="fa-solid fa-paper-plane"></i> Start Your Project
+        </a>
+        <a href="services.html" class="btn-secondary">
+          <i class="fa-solid fa-grid-2"></i> Explore Services
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <div class="footer-logo-box">RMT</div>
+          <span class="footer-logo-name">RM Technologies</span>
+        </div>
+        <p>Full-stack enterprise technology — Data, Cloud, AI, Web & Consulting. Tech subsidiary of Rajesh Masala Udyog Pvt Ltd.</p>
+        <div class="social-links">
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html#data"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Data & Analytics</a></li>
+          <li><a href="services.html#cloud"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Cloud & DevOps</a></li>
+          <li><a href="services.html#web"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Web & Mobile</a></li>
+          <li><a href="services.html#ai"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> AI & Automation</a></li>
+          <li><a href="services.html#enterprise"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Enterprise Solutions</a></li>
+          <li><a href="services.html#consulting"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Consulting</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="about.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> About Us</a></li>
+          <li><a href="portfolio.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Portfolio</a></li>
+          <li><a href="team.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Our Team</a></li>
+          <li><a href="blog.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Blog</a></li>
+          <li><a href="careers.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Careers</a></li>
+          <li><a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size:0.6rem;"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact Us</h5>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-envelope"></i>
+          <span><a href="mailto:info@rmtechnologies.in" style="color:var(--text-secondary);">info@rmtechnologies.in</a></span>
+        </div>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 XXXXX XXXXX</span>
+        </div>
+        <div class="footer-contact-row">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Amethi, Uttar Pradesh, India – 227405</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <p>© 2025 RM Technologies. All Rights Reserved.</p>
+        <span class="footer-cin">Parent CIN: U15490UP2020PTC127010 | Rajesh Masala Udyog Pvt Ltd</span>
+      </div>
+      <div class="footer-bottom-right">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="refund.html">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-float" target="_blank">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<button class="back-top" id="backTop">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
