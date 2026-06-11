@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<rect width="200" height="200" fill="url(#grad\){i})"/>
+<text x="100" y="115" font-family="Poppins, Arial" font-weight="900" font-size="60" text-anchor="middle" fill="white">\({String.fromCharCode(64 + i)}</text>
+<defs>
+<linearGradient id="grad\){i}" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#00D4FF"/>
+<stop offset="100%" stop-color="#0066FF"/>
+</linearGradient>
+</defs>
+</svg>

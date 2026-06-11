@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RM Technologies Case Study - Enterprise FMCG Vendor Data Platform. Medallion Architecture on AWS Databricks processing 1-2M orders daily.">
+  <title>Case Study: Enterprise Vendor Data Platform | RM Technologies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .case-hero {
+      padding: 140px 0 60px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .case-hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(0,102,255,0.04), transparent);
+    }
+    .case-hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .case-meta-bar {
+      display: flex; gap: 24px; flex-wrap: wrap;
+      padding: 20px 0; margin: 24px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .case-meta-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; color: var(--text-muted); font-family: var(--font-mono);
+    }
+    .case-meta-item i { color: var(--accent-blue); font-size: 0.75rem; }
+    .case-meta-item strong { color: var(--text-primary); font-weight: 600; }
+    .case-results {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin: 40px 0;
+    }
+    .case-result {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; text-align: center; transition: var(--transition);
+    }
+    .case-result:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); }
+    .case-result-val {
+      font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800;
+      background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .case-result-key { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
+    .case-section { margin-bottom: 48px; }
+    .case-section h2 {
+      font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800;
+      margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+    }
+    .case-section h2 .num {
+      width: 32px; height: 32px; background: var(--gradient-main); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; color: white; flex-shrink: 0;
+    }
+    .case-section p {
+      font-size: 0.92rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: 14px;
+    }
+    .case-section ul { list-style: none; padding: 0; margin-bottom: 16px; }
+    .case-section ul li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px;
+      padding: 10px 14px; background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .case-section ul li i { color: var(--accent-blue); margin-top: 3px; flex-shrink: 0; font-size: 0.72rem; }
+    .arch-diagram {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 32px; margin: 24px 0;
+    }
+    .arch-layers { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 20px; }
+    .arch-layer {
+      background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.15);
+      border-radius: var(--radius); padding: 20px; text-align: center;
+    }
+    .arch-layer-title {
+      font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 2px; margin-bottom: 8px;
+    }
+    .arch-layer-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+    .arch-flow {
+      display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+      font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);
+      padding: 14px; background: rgba(0,0,0,0.2); border-radius: 8px;
+    }
+    .arch-flow-arrow { color: var(--accent-blue); font-weight: 700; }
+    .arch-flow-item {
+      padding: 4px 12px; background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 4px;
+    }
+    .similar-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 32px; }
+    @media(max-width:1024px) {
+      .case-results { grid-template-columns: repeat(2,1fr); }
+      .arch-layers { grid-template-columns: 1fr; }
+      .similar-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media(max-width:768px) {
+      .case-results { grid-template-columns: 1fr 1fr; }
+      .similar-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="loader"><div class="loader-content"><div class="loader-logo">RMT</div><div class="loader-bar"><div class="loader-bar-fill"></div></div><div class="loader-text">LOADING...</div></div></div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-box">RMT</div><span class="nav-logo-text">RM <span>Technologies</span></span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+      <a href="portfolio.html" class="active">Portfolio</a><a href="team.html">Team</a><a href="blog.html">Blog</a>
+      <a href="careers.html">Careers</a><a href="contact.html" class="nav-cta">Contact Us</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a><a href="team.html">Team</a><a href="blog.html">Blog</a>
+  <a href="careers.html">Careers</a><a href="contact.html">Contact Us</a>
+</div>
+
+<!-- CASE STUDY HERO -->
+<section class="case-hero">
+  <div class="case-hero-bg"></div>
+  <div class="case-hero-grid"></div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="breadcrumb" style="justify-content:flex-start;">
+      <a href="index.html">Home</a><span class="sep">/</span>
+      <a href="portfolio.html">Portfolio</a><span class="sep">/</span>
+      <span class="current">Case Study</span>
+    </div>
+
+    <div style="display:inline-flex;align-items:center;gap:6px;background:var(--gradient-main);color:white;font-size:0.7rem;font-weight:700;padding:5px 14px;border-radius:50px;font-family:var(--font-mono);margin-bottom:16px;">
+      <i class="fa-solid fa-star"></i> FLAGSHIP CASE STUDY
+    </div>
+
+    <h1 style="font-family:var(--font-heading);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.2;margin-bottom:14px;">
+      Enterprise FMCG<br><span class="gradient-text">Vendor Data Platform</span>
+    </h1>
+
+    <p style="font-size:1rem;color:var(--text-secondary);max-width:650px;line-height:1.8;">
+      End-to-end Medallion Architecture on AWS Databricks — centralizing order management, vendor analytics, and sales reporting for a ₹20Cr+ monthly revenue FMCG operation with 5000+ active vendors.
+    </p>
+
+    <div class="case-meta-bar">
+      <div class="case-meta-item"><i class="fa-solid fa-building"></i> <strong>Industry:</strong> FMCG / Food Products</div>
+      <div class="case-meta-item"><i class="fa-solid fa-calendar"></i> <strong>Duration:</strong> 8 Months</div>
+      <div class="case-meta-item"><i class="fa-solid fa-users"></i> <strong>Team Size:</strong> 6 Engineers</div>
+      <div class="case-meta-item"><i class="fa-solid fa-clock"></i> <strong>Status:</strong> <span style="color:#28C864;">● Live in Production</span></div>
+    </div>
+
+    <div class="service-tags" style="gap:8px;">
+      <span class="tag">AWS Databricks</span><span class="tag">Apache Kafka</span><span class="tag">PySpark</span>
+      <span class="tag">Apache Airflow</span><span class="tag">Delta Lake</span><span class="tag">AWS S3</span>
+      <span class="tag">Python</span><span class="tag">CI/CD</span><span class="tag">REST APIs</span>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="section-sm" style="background:rgba(0,212,255,0.02);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="case-results" data-aos="fade-up">
+      <div class="case-result">
+        <div class="case-result-val">5000+</div>
+        <div class="case-result-key">Vendors Managed</div>
+      </div>
+      <div class="case-result">
+        <div class="case-result-val">1-2M/Day</div>
+        <div class="case-result-key">Orders Processed</div>
+      </div>
+      <div class="case-result">
+        <div class="case-result-val">₹20Cr+</div>
+        <div class="case-result-key">Monthly Revenue</div>
+      </div>
+      <div class="case-result">
+        <div class="case-result-val">99.9%</div>
+        <div class="case-result-key">Pipeline Uptime</div>
+      </div>
+      <div class="case-result">
+        <div class="case-result-val">60%</div>
+        <div class="case-result-key">Faster Reporting</div>
+      </div>
+      <div class="case-result">
+        <div class="case-result-val">&lt;5 min</div>
+        <div class="case-result-key">Data Freshness</div>
+      </div>
+      <div class="case-result">
+        <div class="case-result-val">100%</div>
+        <div class="case-result-key">Automated QA</div>
+      </div>
+      <div class="case-result">
+        <div class="case-result-val">Zero</div>
+        <div class="case-result-key">Data Loss Incidents</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY BODY -->
+<section class="section">
+  <div class="container" style="max-width:900px;">
+
+    <div class="case-section" data-aos="fade-up">
+      <h2><span class="num">1</span> The Challenge</h2>
+      <p>A leading FMCG manufacturer with 5000+ active vendors across India was struggling with fragmented data systems. Order data flowed through multiple disconnected channels — vendor databases, REST APIs, purchase systems, company websites, and even SMS-based ordering.</p>
+      <ul>
+        <li><i class="fa-solid fa-exclamation-triangle"></i> <strong>No centralized data platform</strong> — data scattered across 15+ source systems with no single source of truth</li>
+        <li><i class="fa-solid fa-exclamation-triangle"></i> <strong>Manual reporting taking 3-5 days</strong> — business decisions delayed due to slow Excel-based analytics</li>
+        <li><i class="fa-solid fa-exclamation-triangle"></i> <strong>Data quality issues</strong> — duplicate records, inconsistent schemas, missing fields across vendor data</li>
+        <li><i class="fa-solid fa-exclamation-triangle"></i> <strong>No real-time visibility</strong> — operations team couldn't see live order status, vendor performance, or revenue trends</li>
+        <li><i class="fa-solid fa-exclamation-triangle"></i> <strong>Scale pressure</strong> — 1-2 million order transactions daily with growing vendor network</li>
+      </ul>
+    </div>
+
+    <div class="case-section" data-aos="fade-up">
+      <h2><span class="num">2</span> Our Solution</h2>
+      <p>We designed and implemented an end-to-end Medallion Architecture (Bronze → Silver → Gold) on AWS Databricks, creating a unified enterprise data platform that ingests, transforms, validates, and serves analytics-ready data.</p>
+
+      <div class="arch-diagram">
+        <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);letter-spacing:2px;margin-bottom:20px;">ARCHITECTURE DIAGRAM</div>
+        <div class="arch-layers">
+          <div class="arch-layer" style="border-color:rgba(255,107,53,0.3);">
+            <div class="arch-layer-title" style="color:var(--accent-orange);">🥉 BRONZE LAYER</div>
+            <div class="arch-layer-desc">Raw data ingestion from Kafka streams, REST APIs, vendor databases, SMS channels. Stored as-is in AWS S3 for auditability and reprocessing.</div>
+          </div>
+          <div class="arch-layer" style="border-color:rgba(0,212,255,0.3);">
+            <div class="arch-layer-title" style="color:var(--accent-blue);">🥈 SILVER LAYER</div>
+            <div class="arch-layer-desc">PySpark transformations — schema validation, null handling, deduplication, nested JSON flattening, latest record selection, business rule validation.</div>
+          </div>
+          <div class="arch-layer" style="border-color:rgba(40,200,100,0.3);">
+            <div class="arch-layer-title" style="color:#28C864;">🥇 GOLD LAYER</div>
+            <div class="arch-layer-desc">Curated Delta tables for vendor analytics, sales reporting, revenue trends, order success rates, operational dashboards, and executive KPIs.</div>
+          </div>
+        </div>
+        <div class="arch-flow">
+          <span class="arch-flow-item">📡 Sources</span>
+          <span class="arch-flow-arrow">→</span>
+          <span class="arch-flow-item">🔄 Kafka/API</span>
+          <span class="arch-flow-arrow">→</span>
+          <span class="arch-flow-item">🪣 S3 Bronze</span>
+          <span class="arch-flow-arrow">→</span>
+          <span class="arch-flow-item">⚡ Databricks</span>
+          <span class="arch-flow-arrow">→</span>
+          <span class="arch-flow-item">🥇 Gold Tables</span>
+          <span class="arch-flow-arrow">→</span>
+          <span class="arch-flow-item">📊 Dashboards</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-section" data-aos="fade-up">
+      <h2><span class="num">3</span> What We Built</h2>
+      <ul>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>Kafka + REST API ingestion pipelines</strong> — collecting data from vendor databases, APIs, purchase systems, websites, and SMS-based ordering channels in real-time</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>Scalable PySpark transformation engine</strong> — schema validation, null handling, deduplication, nested JSON flattening, latest record selection, and business rule validation</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>Apache Airflow orchestration</strong> — reliable batch and near real-time ETL workflows with monitoring, alerting, retry mechanisms, and SLA tracking</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>Delta Lake optimization</strong> — ACID transactions, schema evolution, time-travel for data recovery, Z-ordering for query performance</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>Automated data quality framework</strong> — 200+ validation rules, anomaly detection, freshness checks, and automated alerting on data quality SLA breaches</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>AI-powered pipeline failure analysis</strong> — lightweight LLM-based assistant that analyzes pipeline failures and suggests fixes automatically</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>CI/CD deployment workflows</strong> — automated testing, staging, and production deployment with rollback capabilities using GitHub Actions</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>Executive dashboards</strong> — real-time vendor performance, sales reporting, revenue trends, order success rates, and regional analytics</li>
+      </ul>
+    </div>
+
+    <div class="case-section" data-aos="fade-up">
+      <h2><span class="num">4</span> Tech Stack</h2>
+      <div class="service-tags" style="gap:8px;">
+        <span class="tag">AWS Databricks</span><span class="tag">Apache Kafka</span><span class="tag">PySpark</span>
+        <span class="tag">Apache Airflow</span><span class="tag">Delta Lake</span><span class="tag">AWS S3</span>
+        <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">REST APIs</span>
+        <span class="tag">GitHub Actions</span><span class="tag">Great Expectations</span><span class="tag">Power BI</span>
+        <span class="tag">AWS Lambda</span><span class="tag">AWS CloudWatch</span><span class="tag">Terraform</span>
+      </div>
+    </div>
+
+    <div class="case-section" data-aos="fade-up">
+      <h2><span class="num">5</span> Client Testimonial</h2>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;position:relative;">
+        <div style="position:absolute;top:12px;right:20px;font-size:4rem;font-family:Georgia;color:rgba(0,212,255,0.1);">"</div>
+        <p style="font-size:1rem;color:var(--text-secondary);line-height:1.85;font-style:italic;margin-bottom:20px;">
+          "RM Technologies transformed our entire vendor management and data operations. What used to take 3-5 days of manual reporting now happens in real-time. The Databricks pipeline they built is rock-solid — processing over a million orders daily without a single failure. Our business intelligence has improved dramatically."
+        </p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:48px;height:48px;background:linear-gradient(135deg,#00D4FF,#0066FF);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;color:white;font-size:1rem;">RK</div>
+          <div>
+            <div style="font-weight:700;font-size:0.92rem;">Director</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">Leading FMCG Manufacturer, Uttar Pradesh</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- SIMILAR PROJECTS -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-tag">More Projects</span>
+      <h2 class="section-title">Similar <span class="gradient-text">Case Studies</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="similar-grid">
+      <a href="portfolio.html" class="project-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="project-thumb pt-1"><div class="project-thumb-icon">❄️</div></div>
+        <div class="project-content">
+          <div class="project-client">Retail Enterprise</div>
+          <h3>Snowflake Data Warehouse Migration</h3>
+          <p>Migrated 15+ legacy databases to Snowflake with dbt transformations.</p>
+          <div class="service-tags"><span class="tag">Snowflake</span><span class="tag">dbt</span></div>
+        </div>
+      </a>
+      <a href="portfolio.html" class="project-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="project-thumb pt-2"><div class="project-thumb-icon">🤖</div></div>
+        <div class="project-content">
+          <div class="project-client">FMCG Manufacturer</div>
+          <h3>AI Demand Forecasting System</h3>
+          <p>ML model with 87% accuracy saving ₹2.5Cr annually.</p>
+          <div class="service-tags"><span class="tag tag-purple">XGBoost</span><span class="tag tag-purple">SageMaker</span></div>
+        </div>
+      </a>
+      <a href="portfolio.html" class="project-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="project-thumb pt-4"><div class="project-thumb-icon">📊</div></div>
+        <div class="project-content">
+          <div class="project-client">Logistics Enterprise</div>
+          <h3>Real-Time Operations Dashboard</h3>
+          <p>Live tracking for 500+ vehicles across 12 states.</p>
+          <div class="service-tags"><span class="tag">Kafka</span><span class="tag">Grafana</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="container">
+    <div class="cta-box" data-aos="fade-up">
+      <span class="section-tag">Your Project Next</span>
+      <h2>Need a Similar <span class="gradient-text">Data Platform?</span></h2>
+      <p>Let's discuss how we can build a scalable, production-ready data solution for your enterprise.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn-primary"><i class="fa-solid fa-paper-plane"></i> Start Your Project</a>
+        <a href="portfolio.html" class="btn-secondary"><i class="fa-solid fa-briefcase"></i> More Projects</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="padding:20px 0;">
+      <div class="footer-bottom-left">
+        <p>© 2025 RM Technologies. All Rights Reserved.</p>
+        <span class="footer-cin">Parent CIN: U15490UP2020PTC127010</span>
+      </div>
+      <div class="footer-bottom-right">
+        <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refund.html">Refund</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/917570000370" class="whatsapp-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="back-top" id="backTop"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
